@@ -14,6 +14,7 @@ import calendarWithBookings from './assets/calendar-with-bookings.webp'
 import bookingsManagement from './assets/bookings-management.webp'
 import loyaltyProgram from './assets/loyalty-program.webp'
 import customerBookingInterface from './assets/customer-booking-interface.webp'
+import tyroLogo from './assets/tyro-logo.png'
 
 function App() {
   const [activeFeature, setActiveFeature] = useState(0)
@@ -153,26 +154,7 @@ function App() {
     }
   ]
 
-  const testimonials = isTimelyMigration ? [
-    {
-      name: "Sarah Chen",
-      business: "Luxe Hair Studio, South Yarra",
-      quote: "Switched from Timely last month. Migration took one afternoon. My staff actually thanked me.",
-      rating: 5
-    },
-    {
-      name: "Emma Williams",
-      business: "Beauty on Brunswick, Fitzroy",
-      quote: "Same Tyro terminal, 10x better software. Why did I wait so long?",
-      rating: 5
-    },
-    {
-      name: "Michael Torres",
-      business: "Gentlemen's Grooming, CBD",
-      quote: "Finally, a POS that doesn't crash during Saturday rush. Revenue up 20% since switching.",
-      rating: 5
-    }
-  ] : [
+  const testimonials = [
     {
       name: "Sarah Hamilton",
       business: "Hamilton Beauty Services",
@@ -258,11 +240,10 @@ function App() {
             <a href="#features" className="text-gray-600 hover:text-purple-600 transition-colors">Features</a>
             <a href="#pricing" className="text-gray-600 hover:text-purple-600 transition-colors">Pricing</a>
             <a href="#testimonials" className="text-gray-600 hover:text-purple-600 transition-colors">Testimonials</a>
-            <Button variant="outline" className="border-purple-600 text-purple-600 hover:bg-purple-50">
-              Sign In
-            </Button>
-            <Button className="bg-purple-600 hover:bg-purple-700">
-              Start Free Trial
+            <Button className="bg-purple-600 hover:bg-purple-700" asChild>
+              <a href="#get-started">
+                Start Free Trial
+              </a>
             </Button>
           </nav>
         </div>
@@ -304,7 +285,7 @@ function App() {
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Button size="lg" className={isTimelyMigration ? "bg-red-600 hover:bg-red-700 text-lg px-8 py-3" : "bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3"} asChild>
                   <a href="#get-started">
-                    {isTimelyMigration ? 'Start My Free Migration' : 'Start Your Free 30-Day Trial'}
+                    {isTimelyMigration ? 'Claim 6 Months Free' : 'Start Your Free 30-Day Trial'}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
@@ -316,11 +297,27 @@ function App() {
                 </Button>
               </div>
               {isTimelyMigration && (
-                <div className="flex flex-wrap gap-4 text-sm text-gray-600">
-                  <div className="flex items-center space-x-2">
-                    <CheckCircle className="h-5 w-5 text-green-500" />
-                    <span>Keep Your Tyro Terminal</span>
+                <>
+                  <div className="flex items-center justify-start mb-6">
+                    <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-8 py-4 rounded-xl border-2 border-gray-300 shadow-md">
+                      <div className="flex items-center space-x-4">
+                        <div className="bg-gray-800 p-3 rounded">
+                          <img 
+                            src={tyroLogo} 
+                            alt="Tyro" 
+                            className="h-10 w-auto"
+                          />
+                        </div>
+                        <CheckCircle className="h-8 w-8 text-green-500" />
+                        <span className="text-2xl font-semibold text-gray-800">Your Tyro Terminal Just Works With HEYA</span>
+                      </div>
+                    </div>
                   </div>
+                  <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="h-5 w-5 text-green-500" />
+                      <span>Keep Your Tyro Terminal</span>
+                    </div>
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="h-5 w-5 text-green-500" />
                     <span>24-Hour Migration</span>
@@ -334,6 +331,7 @@ function App() {
                     <span>Australian Support</span>
                   </div>
                 </div>
+                </>
               )}
             </div>
             <div className="relative">
@@ -605,7 +603,7 @@ function App() {
                     <tr>
                       <td className="px-6 py-4 font-medium">Monthly Cost</td>
                       <td className="px-6 py-4 text-center text-red-600">$89+</td>
-                      <td className="px-6 py-4 text-center text-green-600 font-bold">$49 (locked forever)</td>
+                      <td className="px-6 py-4 text-center text-green-600 font-bold">$49</td>
                     </tr>
                     <tr className="bg-gray-50">
                       <td className="px-6 py-4 font-medium">Setup Fee</td>
@@ -800,10 +798,6 @@ function App() {
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="h-6 w-6 text-green-300 flex-shrink-0 mt-0.5" />
                       <span>That's $294 back in your pocket</span>
-                    </li>
-                    <li className="flex items-start space-x-3">
-                      <CheckCircle className="h-6 w-6 text-green-300 flex-shrink-0 mt-0.5" />
-                      <span>Price locked forever</span>
                     </li>
                   </ul>
                 </div>
@@ -1004,14 +998,15 @@ function App() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="testimonials" className="py-20">
-        <div className="container mx-auto px-4">
+      {!isTimelyMigration && (
+        <section id="testimonials" className="py-20">
+          <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              {isTimelyMigration ? 'Salons That Escaped Timely' : 'Loved by beauty business owners across Australia'}
+              Loved by beauty business owners across Australia
             </h2>
             <p className="text-xl text-gray-600">
-              {isTimelyMigration ? 'Real stories from salons that made the switch' : 'See how Heya POS is helping salons and spas save time and grow their business'}
+              See how Heya POS is helping salons and spas save time and grow their business
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
@@ -1036,6 +1031,7 @@ function App() {
           </div>
         </div>
       </section>
+      )}
 
       {/* Timely Migration Testimonials - Only shows for Timely users */}
       {isTimelyMigration && (
@@ -1109,6 +1105,166 @@ function App() {
                   <a href="#get-started">
                     Join 200+ Former Timely Users
                     <ArrowRight className="ml-2 h-5 w-5" />
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Timely-specific FAQ Section - Only shows for Timely users */}
+      {isTimelyMigration && (
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                  Your Timely Migration Questions Answered
+                </h2>
+                <p className="text-xl text-gray-600">
+                  Everything you need to know about switching from Timely to HEYA
+                </p>
+              </div>
+              
+              <div className="space-y-6">
+                <Card className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    "Will I lose my booking history from Timely?"
+                  </h3>
+                  <p className="text-gray-700">
+                    No. We migrate everything - customers, bookings, notes, history. Nothing gets left behind.
+                  </p>
+                </Card>
+                
+                <Card className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    "What about my Tyro EFTPOS terminal?"
+                  </h3>
+                  <p className="text-gray-700">
+                    Keep it! HEYA works seamlessly with your existing Tyro. No new hardware needed.
+                  </p>
+                </Card>
+                
+                <Card className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    "How long does migration really take?"
+                  </h3>
+                  <p className="text-gray-700">
+                    Most salons are fully migrated in 24 hours. Complex setups might take 48 hours max.
+                  </p>
+                </Card>
+                
+                <Card className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    "What if I'm locked into a Timely contract?"
+                  </h3>
+                  <p className="text-gray-700">
+                    We'll credit you for any early termination fees up to $200. Just show us the invoice.
+                  </p>
+                </Card>
+                
+                <Card className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    "Is the 6 months free offer real?"
+                  </h3>
+                  <p className="text-gray-700">
+                    100% real. No hidden fees. Sign for 12 months, get months 7-12 completely free.
+                  </p>
+                </Card>
+              </div>
+              
+              <div className="mt-12 text-center">
+                <Button size="lg" className="bg-red-600 hover:bg-red-700 text-lg px-8 py-3" asChild>
+                  <a href="#get-started">
+                    Get All Your Questions Answered
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* HEYA Product Showcase Section - Only shows for Timely users */}
+      {isTimelyMigration && (
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                  See Why HEYA is Better
+                </h2>
+                <p className="text-xl text-gray-600">
+                  Not just better than Timely - better than anything else
+                </p>
+              </div>
+              
+              <div className="grid md:grid-cols-3 gap-8">
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <img 
+                    src={calendarWithBookings} 
+                    alt="Calendar View" 
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      Calendar View
+                    </h3>
+                    <p className="text-gray-700 mb-3">
+                      Drag-and-drop scheduling that actually works
+                    </p>
+                    <div className="text-sm text-purple-600 font-semibold">
+                      ✓ Real-time updates, no refresh needed
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <img 
+                    src={bookingsManagement} 
+                    alt="Quick Checkout" 
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      Quick Checkout
+                    </h3>
+                    <p className="text-gray-700 mb-3">
+                      Checkout in under 30 seconds
+                    </p>
+                    <div className="text-sm text-purple-600 font-semibold">
+                      ✓ Works with your existing Tyro
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                  <img 
+                    src={dashboardOverview} 
+                    alt="Customer Insights" 
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      Customer Insights
+                    </h3>
+                    <p className="text-gray-700 mb-3">
+                      Know your business at a glance
+                    </p>
+                    <div className="text-sm text-purple-600 font-semibold">
+                      ✓ Track no-shows, revenue, busy times
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="mt-12 text-center">
+                <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3" asChild>
+                  <a href="#get-started">
+                    See Live Demo
+                    <Play className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
               </div>
@@ -1293,6 +1449,7 @@ function App() {
           </div>
         </div>
       </section>
+
 
       {/* Footer */}
       <footer className="py-12 bg-gray-900 text-white">
