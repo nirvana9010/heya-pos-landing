@@ -126,8 +126,8 @@
 }
 
 @keyframes gentle-glow {
-  0%, 100% { box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3); }
-  50% { box-shadow: 0 4px 20px rgba(124, 58, 237, 0.5); }
+  0%, 100% { box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3); }
+  50% { box-shadow: 0 4px 20px rgba(79, 70, 229, 0.5); }
 }
 
 .animate-subtle-pulse {

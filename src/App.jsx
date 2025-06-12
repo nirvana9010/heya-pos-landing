@@ -27,6 +27,7 @@ function App() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isTimelyMigration, setIsTimelyMigration] = useState(false)
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+  const [expiryDate, setExpiryDate] = useState('')
 
   useEffect(() => {
     // Check for ?from=timely parameter
@@ -50,6 +51,16 @@ function App() {
     }
 
     const deadline = getNextFriday()
+    
+    // Format the expiry date
+    const formatExpiryDate = (date) => {
+      const options = { weekday: 'long', month: 'short', day: 'numeric' }
+      const formatted = date.toLocaleDateString('en-AU', options)
+      const time = date.toLocaleTimeString('en-AU', { hour: 'numeric', minute: '2-digit', hour12: true })
+      return `${formatted} at ${time}`
+    }
+    
+    setExpiryDate(formatExpiryDate(deadline))
 
     const updateCountdown = () => {
       const now = new Date()
@@ -231,16 +242,16 @@ function App() {
       <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">H</span>
             </div>
             <span className="text-xl font-bold text-gray-900">Heya POS</span>
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#features" className="text-gray-600 hover:text-purple-600 transition-colors">Features</a>
-            <a href="#pricing" className="text-gray-600 hover:text-purple-600 transition-colors">Pricing</a>
-            <a href="#testimonials" className="text-gray-600 hover:text-purple-600 transition-colors">Testimonials</a>
-            <Button className="bg-purple-600 hover:bg-purple-700" asChild>
+            <a href="#features" className="text-gray-600 hover:text-indigo-600 transition-colors">Features</a>
+            <a href="#pricing" className="text-gray-600 hover:text-indigo-600 transition-colors">Pricing</a>
+            <a href="#testimonials" className="text-gray-600 hover:text-indigo-600 transition-colors">Testimonials</a>
+            <Button className="bg-indigo-600 hover:bg-indigo-700" asChild>
               <a href="#get-started">
                 Start Free Trial
               </a>
@@ -250,7 +261,7 @@ function App() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-purple-50 to-white">
+      <section className="py-20 bg-gradient-to-br from-indigo-50 to-white">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -268,12 +279,12 @@ function App() {
                 </>
               ) : (
                 <>
-                  <Badge className="mb-4 bg-purple-100 text-purple-700 hover:bg-purple-100">
+                  <Badge className="mb-4 bg-indigo-100 text-indigo-700 hover:bg-indigo-100">
                     Proudly Australian-owned and operated
                   </Badge>
                   <h1 className="text-5xl font-bold text-gray-900 mb-6 leading-tight">
                     The All-in-One Platform{' '}
-                    <span className="text-purple-600">Australian Beauty Businesses</span>{' '}
+                    <span className="text-indigo-600">Australian Beauty Businesses</span>{' '}
                     Trust
                   </h1>
                   <p className="text-xl text-gray-600 mb-8 leading-relaxed">
@@ -283,13 +294,13 @@ function App() {
                 </>
               )}
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button size="lg" className={isTimelyMigration ? "bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3" : "bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3"} asChild>
+                <Button size="lg" className={isTimelyMigration ? "bg-indigo-600 hover:bg-indigo-700 text-lg px-8 py-3" : "bg-indigo-600 hover:bg-indigo-700 text-lg px-8 py-3"} asChild>
                   <a href="#get-started">
                     {isTimelyMigration ? <>Claim 6 Months <span className="free-badge">FREE</span></> : 'Start Your Free 30-Day Trial'}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
-                <Button size="lg" variant="outline" className={isTimelyMigration ? "border-purple-600 text-purple-600 hover:bg-purple-50 text-lg px-8 py-3" : "border-purple-600 text-purple-600 hover:bg-purple-50 text-lg px-8 py-3"} asChild>
+                <Button size="lg" variant="outline" className={isTimelyMigration ? "border-indigo-600 text-indigo-600 hover:bg-indigo-50 text-lg px-8 py-3" : "border-indigo-600 text-indigo-600 hover:bg-indigo-50 text-lg px-8 py-3"} asChild>
                   <a href="tel:0432648531">
                     <Phone className="mr-2 h-5 w-5" />
                     {isTimelyMigration ? 'Book 10-Min Demo' : 'Call Nick: 0432 648 531'}
@@ -351,33 +362,33 @@ function App() {
         </div>
       </section>
 
-      {/* Countdown Timer for Timely Users */}
-      {isTimelyMigration && (
-        <section className="bg-gradient-to-r from-purple-700 to-purple-600 text-white py-4 shadow-lg">
+      {/* Countdown Timer for Timely Users - Hidden for now, can be used for actual promos */}
+      {false && isTimelyMigration && (
+        <section className="bg-gradient-to-r from-indigo-700 to-indigo-600 text-white py-4 shadow-lg">
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-4">
               <div className="flex items-center space-x-2">
                 <Clock className="h-6 w-6 animate-pulse" />
-                <span className="font-bold text-lg">Timely Switcher Deal Expires Friday, Nov 29 at 11:59 PM</span>
+                <span className="font-bold text-lg">Timely Switcher Deal Expires {expiryDate}</span>
               </div>
               <div className="flex items-center space-x-4 text-2xl font-bold animate-subtle-pulse">
                 <div className="text-center">
-                  <div className="bg-purple-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{timeLeft.days}</div>
+                  <div className="bg-indigo-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{timeLeft.days}</div>
                   <div className="text-xs mt-1">DAYS</div>
                 </div>
                 <span>:</span>
                 <div className="text-center">
-                  <div className="bg-purple-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{String(timeLeft.hours).padStart(2, '0')}</div>
+                  <div className="bg-indigo-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{String(timeLeft.hours).padStart(2, '0')}</div>
                   <div className="text-xs mt-1">HOURS</div>
                 </div>
                 <span>:</span>
                 <div className="text-center">
-                  <div className="bg-purple-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{String(timeLeft.minutes).padStart(2, '0')}</div>
+                  <div className="bg-indigo-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{String(timeLeft.minutes).padStart(2, '0')}</div>
                   <div className="text-xs mt-1">MINS</div>
                 </div>
                 <span>:</span>
                 <div className="text-center">
-                  <div className="bg-purple-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{String(timeLeft.seconds).padStart(2, '0')}</div>
+                  <div className="bg-indigo-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{String(timeLeft.seconds).padStart(2, '0')}</div>
                   <div className="text-xs mt-1">SECS</div>
                 </div>
               </div>
@@ -391,25 +402,25 @@ function App() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center justify-center">
             <div className="text-center">
-              <div className="flex items-center justify-center space-x-2 text-purple-600">
+              <div className="flex items-center justify-center space-x-2 text-indigo-600">
                 <MapPin className="h-5 w-5" />
                 <span className="font-semibold">Australian Owned</span>
               </div>
             </div>
             <div className="text-center">
-              <div className="flex items-center justify-center space-x-2 text-purple-600">
+              <div className="flex items-center justify-center space-x-2 text-indigo-600">
                 <Award className="h-5 w-5" />
                 <span className="font-semibold">Tyro Certified</span>
               </div>
             </div>
             <div className="text-center">
-              <div className="flex items-center justify-center space-x-2 text-purple-600">
+              <div className="flex items-center justify-center space-x-2 text-indigo-600">
                 <Zap className="h-5 w-5" />
                 <span className="font-semibold">24-Hour Setup</span>
               </div>
             </div>
             <div className="text-center">
-              <div className="flex items-center justify-center space-x-2 text-purple-600">
+              <div className="flex items-center justify-center space-x-2 text-indigo-600">
                 <Phone className="h-5 w-5" />
                 <span className="font-semibold">Humans Answer</span>
               </div>
@@ -418,163 +429,7 @@ function App() {
         </div>
       </section>
 
-      {/* Pain Points Section */}
-      {isTimelyMigration ? (
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Still Fighting With Timely?</h2>
-              <div className="grid md:grid-cols-2 gap-12">
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-700 mb-6">Timely Problems</h3>
-                  <ul className="space-y-4">
-                    <li className="flex items-start space-x-3">
-                      <span className="text-gray-500 text-2xl">❌</span>
-                      <div>
-                        <p className="text-gray-900 font-semibold">Random crashes during peak hours</p>
-                      </div>
-                    </li>
-                    <li className="flex items-start space-x-3">
-                      <span className="text-gray-500 text-2xl">❌</span>
-                      <div>
-                        <p className="text-gray-900 font-semibold">Clunky interface your staff hates</p>
-                      </div>
-                    </li>
-                    <li className="flex items-start space-x-3">
-                      <span className="text-gray-500 text-2xl">❌</span>
-                      <div>
-                        <p className="text-gray-900 font-semibold">Inventory tracking that doesn't work</p>
-                      </div>
-                    </li>
-                    <li className="flex items-start space-x-3">
-                      <span className="text-gray-500 text-2xl">❌</span>
-                      <div>
-                        <p className="text-gray-900 font-semibold">Support tickets that take days</p>
-                      </div>
-                    </li>
-                    <li className="flex items-start space-x-3">
-                      <span className="text-gray-500 text-2xl">❌</span>
-                      <div>
-                        <p className="text-gray-900 font-semibold">Price increases with no improvements</p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-purple-600 mb-6">HEYA Solutions</h3>
-                  <ul className="space-y-4">
-                    <li className="flex items-start space-x-3">
-                      <span className="text-teal-500 text-2xl">✅</span>
-                      <div>
-                        <p className="text-gray-900 font-semibold">Rock-solid reliability, 99.9% uptime</p>
-                      </div>
-                    </li>
-                    <li className="flex items-start space-x-3">
-                      <span className="text-teal-500 text-2xl">✅</span>
-                      <div>
-                        <p className="text-gray-900 font-semibold">Intuitive design staff learn in minutes</p>
-                      </div>
-                    </li>
-                    <li className="flex items-start space-x-3">
-                      <span className="text-teal-500 text-2xl">✅</span>
-                      <div>
-                        <p className="text-gray-900 font-semibold">Real-time inventory that actually works</p>
-                      </div>
-                    </li>
-                    <li className="flex items-start space-x-3">
-                      <span className="text-teal-500 text-2xl">✅</span>
-                      <div>
-                        <p className="text-gray-900 font-semibold">30-minute support response guarantee</p>
-                      </div>
-                    </li>
-                    <li className="flex items-start space-x-3">
-                      <span className="text-teal-500 text-2xl">✅</span>
-                      <div>
-                        <p className="text-gray-900 font-semibold">Locked pricing, no surprises</p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      ) : (
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Sound Familiar?</h2>
-              <div className="grid md:grid-cols-3 gap-6 mb-8">
-                <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-gray-400">
-                  <p className="text-gray-700 font-medium">System crashes during Saturday rush</p>
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-gray-400">
-                  <p className="text-gray-700 font-medium">Double bookings losing you clients</p>
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-gray-400">
-                  <p className="text-gray-700 font-medium">Fighting with tech instead of focusing on customers</p>
-                </div>
-              </div>
-              <div className="flex items-center justify-center">
-                <ArrowRight className="h-8 w-8 text-purple-600 mr-4" />
-                <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3" asChild>
-                  <a href="#get-started">
-                    Switch to HEYA
-                  </a>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
 
-      {/* Migration Process Timeline - Only shows for Timely users */}
-      {isTimelyMigration && (
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">We Make Switching Painless</h2>
-                <p className="text-xl text-gray-600">Most salons are live within 24 hours</p>
-              </div>
-              
-              <div className="grid md:grid-cols-5 gap-4 mb-12">
-                <div className="text-center">
-                  <div className="bg-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl shadow-lg">1</div>
-                  <h4 className="font-bold mb-2">Export from Timely</h4>
-                  <p className="text-sm text-gray-600">(we guide you)</p>
-                </div>
-                <div className="text-center">
-                  <div className="bg-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl shadow-lg">2</div>
-                  <h4 className="font-bold mb-2">Import to HEYA</h4>
-                  <p className="text-sm text-gray-600">(automatic)</p>
-                </div>
-                <div className="text-center">
-                  <div className="bg-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl shadow-lg">3</div>
-                  <h4 className="font-bold mb-2">Keep your Tyro</h4>
-                  <p className="text-sm text-gray-600">(no new hardware)</p>
-                </div>
-                <div className="text-center">
-                  <div className="bg-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl shadow-lg">4</div>
-                  <h4 className="font-bold mb-2">Train your team</h4>
-                  <p className="text-sm text-gray-600">(one session)</p>
-                </div>
-                <div className="text-center">
-                  <div className="bg-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl shadow-lg">5</div>
-                  <h4 className="font-bold mb-2">Go live</h4>
-                  <p className="text-sm text-gray-600">(without missing a booking)</p>
-                </div>
-              </div>
-              
-              <div className="bg-purple-50 border-l-4 border-purple-500 p-6 text-center">
-                <p className="text-lg text-gray-700">
-                  <strong className="text-purple-700">Our migration specialist handles everything.</strong> You don't lose a single customer record or booking history.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Detailed Comparison Table - Only shows for Timely users */}
       {isTimelyMigration && (
@@ -603,49 +458,49 @@ function App() {
                     <tr>
                       <td className="px-6 py-4 font-medium">Monthly Cost</td>
                       <td className="px-6 py-4 text-center text-gray-600">$89+</td>
-                      <td className="px-6 py-4 text-center text-purple-600 font-bold">$49</td>
+                      <td className="px-6 py-4 text-center text-indigo-600 font-bold">$49</td>
                     </tr>
                     <tr className="bg-gray-50">
                       <td className="px-6 py-4 font-medium">Setup Fee</td>
                       <td className="px-6 py-4 text-center text-gray-600">$299</td>
-                      <td className="px-6 py-4 text-center text-purple-600 font-bold">$0</td>
+                      <td className="px-6 py-4 text-center text-indigo-600 font-bold">$0</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Tyro Integration</td>
                       <td className="px-6 py-4 text-center text-gray-600">Problematic</td>
-                      <td className="px-6 py-4 text-center text-purple-600 font-bold">Seamless</td>
+                      <td className="px-6 py-4 text-center text-indigo-600 font-bold">Seamless</td>
                     </tr>
                     <tr className="bg-gray-50">
                       <td className="px-6 py-4 font-medium">System Crashes</td>
                       <td className="px-6 py-4 text-center text-gray-600">Daily</td>
-                      <td className="px-6 py-4 text-center text-purple-600 font-bold">Never</td>
+                      <td className="px-6 py-4 text-center text-indigo-600 font-bold">Never</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Support Response</td>
                       <td className="px-6 py-4 text-center text-gray-600">2-3 days</td>
-                      <td className="px-6 py-4 text-center text-purple-600 font-bold">30 minutes</td>
+                      <td className="px-6 py-4 text-center text-indigo-600 font-bold">30 minutes</td>
                     </tr>
                     <tr className="bg-gray-50">
                       <td className="px-6 py-4 font-medium">Data Export</td>
                       <td className="px-6 py-4 text-center text-gray-600">Complicated</td>
-                      <td className="px-6 py-4 text-center text-purple-600 font-bold">One click</td>
+                      <td className="px-6 py-4 text-center text-indigo-600 font-bold">One click</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Free Trial</td>
                       <td className="px-6 py-4 text-center text-gray-600">14 days</td>
-                      <td className="px-6 py-4 text-center text-purple-600 font-bold">30 days</td>
+                      <td className="px-6 py-4 text-center text-indigo-600 font-bold">30 days</td>
                     </tr>
                     <tr className="bg-gray-50">
                       <td className="px-6 py-4 font-medium">Contract Lock-in</td>
                       <td className="px-6 py-4 text-center text-gray-600">12 months</td>
-                      <td className="px-6 py-4 text-center text-purple-600 font-bold">Month-to-month</td>
+                      <td className="px-6 py-4 text-center text-indigo-600 font-bold">Month-to-month</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               
               <div className="mt-12 text-center">
-                <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5" asChild>
+                <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5" asChild>
                   <a href="#get-started">
                     Claim Your 6 Months Free
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -714,7 +569,7 @@ function App() {
                 </div>
                 
                 <div>
-                  <h3 className="text-2xl font-bold text-purple-600 mb-6">Heya Solutions ✨</h3>
+                  <h3 className="text-2xl font-bold text-indigo-600 mb-6">Heya Solutions ✨</h3>
                   <ul className="space-y-4">
                     <li className="flex items-start space-x-3">
                       <span className="text-teal-500 text-xl">✓</span>
@@ -756,7 +611,7 @@ function App() {
               </div>
               
               <div className="mt-12 text-center">
-                <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5" asChild>
+                <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5" asChild>
                   <a href="#get-started">
                     Claim Your 50% Discount Now
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -770,7 +625,7 @@ function App() {
 
       {/* Special Offer Section - Only shows for Timely users */}
       {isTimelyMigration && (
-        <section className="py-16 bg-gradient-to-r from-purple-600 to-purple-700 text-white">
+        <section className="py-16 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <div className="bg-white/10 backdrop-blur border-2 border-white/20 rounded-2xl p-8 md:p-12">
@@ -784,19 +639,19 @@ function App() {
                   </div>
                   <ul className="space-y-3 text-lg max-w-2xl mx-auto text-left">
                     <li className="flex items-start space-x-3">
-                      <CheckCircle className="h-6 w-6 text-purple-200 flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="h-6 w-6 text-indigo-200 flex-shrink-0 mt-0.5" />
                       <span>30-day free trial (no card required)</span>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <CheckCircle className="h-6 w-6 text-purple-200 flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="h-6 w-6 text-indigo-200 flex-shrink-0 mt-0.5" />
                       <span>Then just $49/month (normally $99)</span>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <CheckCircle className="h-6 w-6 text-purple-200 flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="h-6 w-6 text-indigo-200 flex-shrink-0 mt-0.5" />
                       <span className="font-bold">Sign for 12 months → Get 6 MONTHS <span className="free-badge">FREE</span></span>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <CheckCircle className="h-6 w-6 text-purple-200 flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="h-6 w-6 text-indigo-200 flex-shrink-0 mt-0.5" />
                       <span>That's $294 back in your pocket</span>
                     </li>
                   </ul>
@@ -811,7 +666,7 @@ function App() {
                   </p>
                 </div>
                 
-                <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-xl px-10 py-4" asChild>
+                <Button size="lg" className="bg-white text-indigo-600 hover:bg-gray-100 text-xl px-10 py-4" asChild>
                   <a href="#get-started">
                     <>Claim My 6 <span className="free-badge">FREE</span> Months</>
                     <ArrowRight className="ml-2 h-6 w-6" />
@@ -823,58 +678,6 @@ function App() {
         </section>
       )}
 
-      {/* ROI Calculator Section - Only shows for Timely users */}
-      {isTimelyMigration && (
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">See Your Savings</h2>
-                <p className="text-xl text-gray-600">Compare your costs over 3 years</p>
-              </div>
-              
-              <div className="bg-gray-50 rounded-2xl p-8 shadow-lg">
-                <div className="grid md:grid-cols-2 gap-8 mb-8">
-                  <div className="text-center">
-                    <h3 className="text-2xl font-bold text-gray-700 mb-4">Staying with Timely</h3>
-                    <div className="space-y-2">
-                      <p className="text-lg">Monthly: <span className="font-bold">$89</span></p>
-                      <p className="text-lg">Yearly: <span className="font-bold">$1,068</span></p>
-                      <p className="text-2xl font-bold text-gray-700">3 Years: $3,204</p>
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <h3 className="text-2xl font-bold text-purple-600 mb-4">Switching to HEYA</h3>
-                    <div className="space-y-2">
-                      <p className="text-lg">Monthly: <span className="font-bold">$49</span></p>
-                      <p className="text-lg">Year 1: <span className="font-bold">$294</span> (6 months <span className="free-badge">FREE</span>)</p>
-                      <p className="text-2xl font-bold text-purple-600">3 Years: $1,620</p>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="bg-purple-100 rounded-xl p-6 text-center">
-                  <p className="text-3xl font-bold text-purple-700 mb-2">
-                    Your 3-Year Savings: $1,584
-                  </p>
-                  <p className="text-lg text-gray-700">
-                    Plus: No crashes, better support, happier staff = priceless
-                  </p>
-                </div>
-              </div>
-              
-              <div className="mt-8 text-center">
-                <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5" asChild>
-                  <a href="#get-started">
-                    Start Saving Now
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </a>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Features Section */}
       <section id="features" className="py-20">
@@ -898,13 +701,13 @@ function App() {
                     onClick={() => setActiveFeature(index)}
                     className={`w-full text-left p-4 rounded-lg transition-all ${
                       activeFeature === index 
-                        ? 'bg-purple-100 border-2 border-purple-600' 
-                        : 'bg-white border-2 border-gray-200 hover:border-purple-300'
+                        ? 'bg-indigo-100 border-2 border-indigo-600' 
+                        : 'bg-white border-2 border-gray-200 hover:border-indigo-300'
                     }`}
                   >
                     <div className="flex items-center space-x-3">
                       <div className={`p-2 rounded-lg ${
-                        activeFeature === index ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-600'
+                        activeFeature === index ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-600'
                       }`}>
                         {feature.icon}
                       </div>
@@ -947,28 +750,28 @@ function App() {
       </section>
 
       {/* Why HEYA Section */}
-      <section className="py-16 bg-purple-50">
+      <section className="py-16 bg-indigo-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Why HEYA?</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="text-center">
-              <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <MapPin className="h-8 w-8 text-white" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Australian startup</h3>
               <p className="text-gray-600">We answer when you call</p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="h-8 w-8 text-white" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Built for salons</h3>
               <p className="text-gray-600">We get your business</p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Star className="h-8 w-8 text-white" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Growing with you</h3>
@@ -979,7 +782,7 @@ function App() {
       </section>
 
       {/* Switching from Timely Section */}
-      <section className="py-12 bg-gradient-to-r from-purple-50 to-purple-100 border-l-4 border-purple-500">
+      <section className="py-12 bg-gradient-to-r from-indigo-50 to-indigo-100 border-l-4 border-indigo-500">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -988,7 +791,7 @@ function App() {
             <p className="text-lg text-gray-700 mb-6">
               We will transition you for <strong>FREE</strong> and provide <strong>100% on-call support</strong>
             </p>
-            <Button size="lg" className="bg-purple-600 hover:bg-purple-700 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5" asChild>
+            <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5" asChild>
               <a href="#get-started">
                 Get Free Migration
               </a>
@@ -1035,7 +838,7 @@ function App() {
 
       {/* Timely Migration Testimonials - Only shows for Timely users */}
       {isTimelyMigration && (
-        <section className="py-20 bg-purple-50">
+        <section className="py-20 bg-indigo-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -1046,7 +849,7 @@ function App() {
               </p>
             </div>
             <div className="max-w-4xl mx-auto space-y-8">
-              <Card className="p-8 border-2 border-purple-200">
+              <Card className="p-8 border-2 border-indigo-200">
                 <CardContent className="p-0">
                   <div className="flex mb-4">
                     {[...Array(5)].map((_, i) => (
@@ -1059,12 +862,12 @@ function App() {
                   <div>
                     <div className="font-bold text-gray-900 text-lg">Jessica Thompson</div>
                     <div className="text-gray-600">Luxe Beauty Studio, Sydney</div>
-                    <Badge className="mt-2 bg-purple-100 text-purple-700">Former Timely User (4 years)</Badge>
+                    <Badge className="mt-2 bg-indigo-100 text-indigo-700">Former Timely User (4 years)</Badge>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="p-8 border-2 border-purple-200">
+              <Card className="p-8 border-2 border-indigo-200">
                 <CardContent className="p-0">
                   <div className="flex mb-4">
                     {[...Array(5)].map((_, i) => (
@@ -1077,12 +880,12 @@ function App() {
                   <div>
                     <div className="font-bold text-gray-900 text-lg">Michael Chen</div>
                     <div className="text-gray-600">Urban Cuts Barbershop, Melbourne</div>
-                    <Badge className="mt-2 bg-purple-100 text-purple-700">Switched from Timely 8 months ago</Badge>
+                    <Badge className="mt-2 bg-indigo-100 text-indigo-700">Switched from Timely 8 months ago</Badge>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="p-8 border-2 border-purple-200">
+              <Card className="p-8 border-2 border-indigo-200">
                 <CardContent className="p-0">
                   <div className="flex mb-4">
                     {[...Array(5)].map((_, i) => (
@@ -1095,13 +898,13 @@ function App() {
                   <div>
                     <div className="font-bold text-gray-900 text-lg">Rachel Martinez</div>
                     <div className="text-gray-600">Serenity Spa & Wellness, Brisbane</div>
-                    <Badge className="mt-2 bg-purple-100 text-purple-700">Ex-Timely User (2 years)</Badge>
+                    <Badge className="mt-2 bg-indigo-100 text-indigo-700">Ex-Timely User (2 years)</Badge>
                   </div>
                 </CardContent>
               </Card>
 
               <div className="text-center mt-12">
-                <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3" asChild>
+                <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-lg px-8 py-3" asChild>
                   <a href="#get-started">
                     Join 200+ Former Timely Users
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -1175,7 +978,7 @@ function App() {
               </div>
               
               <div className="mt-12 text-center">
-                <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5" asChild>
+                <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5" asChild>
                   <a href="#get-started">
                     Get All Your Questions Answered
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -1215,7 +1018,7 @@ function App() {
                     <p className="text-gray-700 mb-3">
                       Drag-and-drop scheduling that actually works
                     </p>
-                    <div className="text-sm text-purple-600 font-semibold">
+                    <div className="text-sm text-indigo-600 font-semibold">
                       ✓ Real-time updates, no refresh needed
                     </div>
                   </div>
@@ -1234,7 +1037,7 @@ function App() {
                     <p className="text-gray-700 mb-3">
                       Checkout in under 30 seconds
                     </p>
-                    <div className="text-sm text-purple-600 font-semibold">
+                    <div className="text-sm text-indigo-600 font-semibold">
                       ✓ Works with your existing Tyro
                     </div>
                   </div>
@@ -1253,7 +1056,7 @@ function App() {
                     <p className="text-gray-700 mb-3">
                       Know your business at a glance
                     </p>
-                    <div className="text-sm text-purple-600 font-semibold">
+                    <div className="text-sm text-indigo-600 font-semibold">
                       ✓ Track no-shows, revenue, busy times
                     </div>
                   </div>
@@ -1261,7 +1064,7 @@ function App() {
               </div>
               
               <div className="mt-12 text-center">
-                <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3" asChild>
+                <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-lg px-8 py-3" asChild>
                   <a href="#get-started">
                     See Live Demo
                     <Play className="ml-2 h-5 w-5" />
@@ -1286,9 +1089,9 @@ function App() {
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {pricingPlans.map((plan, index) => (
-              <Card key={index} className={`relative ${plan.popular ? 'border-purple-600 border-2' : ''}`}>
+              <Card key={index} className={`relative ${plan.popular ? 'border-indigo-600 border-2' : ''}`}>
                 {plan.popular && (
-                  <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-purple-600">
+                  <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-indigo-600">
                     Most Popular
                   </Badge>
                 )}
@@ -1312,7 +1115,7 @@ function App() {
                   <Button 
                     className={`w-full ${
                       plan.popular 
-                        ? 'bg-purple-600 hover:bg-purple-700' 
+                        ? 'bg-indigo-600 hover:bg-indigo-700' 
                         : 'bg-gray-900 hover:bg-gray-800'
                     }`}
                     asChild
@@ -1329,14 +1132,14 @@ function App() {
       </section>
 
       {/* CTA Section with Form */}
-      <section id="get-started" className="py-20 bg-purple-600">
+      <section id="get-started" className="py-20 bg-indigo-600">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-white mb-4">
                 Ready to transform your beauty business?
               </h2>
-              <p className="text-xl text-purple-100 max-w-2xl mx-auto">
+              <p className="text-xl text-indigo-100 max-w-2xl mx-auto">
                 Join hundreds of Australian salons and spas already saving time and growing their revenue with Heya POS.
               </p>
             </div>
@@ -1347,25 +1150,25 @@ function App() {
                 <h3 className="text-2xl font-semibold mb-4">Start your free 30-day trial today</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start space-x-3">
-                    <CheckCircle className="h-6 w-6 text-purple-200 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-6 w-6 text-indigo-200 flex-shrink-0 mt-0.5" />
                     <span>No credit card required to get started</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <CheckCircle className="h-6 w-6 text-purple-200 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-6 w-6 text-indigo-200 flex-shrink-0 mt-0.5" />
                     <span>Full setup and onboarding in under 24 hours</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <CheckCircle className="h-6 w-6 text-purple-200 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-6 w-6 text-indigo-200 flex-shrink-0 mt-0.5" />
                     <span>Free data migration from your current system</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <CheckCircle className="h-6 w-6 text-purple-200 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-6 w-6 text-indigo-200 flex-shrink-0 mt-0.5" />
                     <span>Australian-based support team available 7 days</span>
                   </li>
                 </ul>
                 <div className="pt-4">
-                  <p className="text-purple-200 mb-2">Prefer to talk to someone?</p>
-                  <Button variant="outline" className="border-white bg-transparent text-white hover:bg-white hover:text-purple-600" asChild>
+                  <p className="text-indigo-200 mb-2">Prefer to talk to someone?</p>
+                  <Button variant="outline" className="border-white bg-transparent text-white hover:bg-white hover:text-indigo-600" asChild>
                     <a href="tel:0432648531">
                       <Phone className="mr-2 h-4 w-4" />
                       Call Nick: 0432 648 531
@@ -1438,7 +1241,7 @@ function App() {
                   <Button 
                     type="submit" 
                     size="lg" 
-                    className="w-full bg-purple-600 hover:bg-purple-700 text-lg py-3"
+                    className="w-full bg-indigo-600 hover:bg-indigo-700 text-lg py-3"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? 'Submitting...' : (isTimelyMigration ? 'Start Your Timely Migration' : 'Get Started Free')}
@@ -1457,7 +1260,7 @@ function App() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">H</span>
                 </div>
                 <span className="text-xl font-bold">Heya POS</span>
