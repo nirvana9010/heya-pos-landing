@@ -260,7 +260,7 @@ function App() {
                     Leaving Timely? We'll Pay for Your Move.
                   </h1>
                   <p className="text-2xl text-gray-700 mb-6 font-medium">
-                    Keep your Tyro. Migrate your data. Get 6 months FREE when you switch.
+                    Keep your Tyro. Migrate your data. Get 6 months <span className="free-badge">FREE</span> when you switch.
                   </p>
                   <p className="text-lg text-gray-600 mb-8">
                     Join 47 Australian salons who switched from Timely this month
@@ -283,13 +283,13 @@ function App() {
                 </>
               )}
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button size="lg" className={isTimelyMigration ? "bg-red-600 hover:bg-red-700 text-lg px-8 py-3" : "bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3"} asChild>
+                <Button size="lg" className={isTimelyMigration ? "bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3" : "bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3"} asChild>
                   <a href="#get-started">
-                    {isTimelyMigration ? 'Claim 6 Months Free' : 'Start Your Free 30-Day Trial'}
+                    {isTimelyMigration ? <>Claim 6 Months <span className="free-badge">FREE</span></> : 'Start Your Free 30-Day Trial'}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
-                <Button size="lg" variant="outline" className={isTimelyMigration ? "border-red-600 text-red-600 hover:bg-red-50 text-lg px-8 py-3" : "border-purple-600 text-purple-600 hover:bg-purple-50 text-lg px-8 py-3"} asChild>
+                <Button size="lg" variant="outline" className={isTimelyMigration ? "border-purple-600 text-purple-600 hover:bg-purple-50 text-lg px-8 py-3" : "border-purple-600 text-purple-600 hover:bg-purple-50 text-lg px-8 py-3"} asChild>
                   <a href="tel:0432648531">
                     <Phone className="mr-2 h-5 w-5" />
                     {isTimelyMigration ? 'Book 10-Min Demo' : 'Call Nick: 0432 648 531'}
@@ -308,14 +308,14 @@ function App() {
                             className="h-10 w-auto"
                           />
                         </div>
-                        <CheckCircle className="h-8 w-8 text-green-500" />
+                        <CheckCircle className="h-8 w-8 text-teal-500" />
                         <span className="text-2xl font-semibold text-gray-800">Your Tyro Terminal Just Works With HEYA</span>
                       </div>
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-4 text-sm text-gray-600">
                     <div className="flex items-center space-x-2">
-                      <CheckCircle className="h-5 w-5 text-green-500" />
+                      <CheckCircle className="h-5 w-5 text-teal-500" />
                       <span>Keep Your Tyro Terminal</span>
                     </div>
                   <div className="flex items-center space-x-2">
@@ -342,7 +342,7 @@ function App() {
               />
               <div className="absolute -bottom-4 -left-4 bg-white p-4 rounded-lg shadow-lg border">
                 <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                  <div className="w-3 h-3 bg-teal-500 rounded-full animate-pulse"></div>
                   <span className="text-sm font-medium">Real-time sync active</span>
                 </div>
               </div>
@@ -353,31 +353,31 @@ function App() {
 
       {/* Countdown Timer for Timely Users */}
       {isTimelyMigration && (
-        <section className="bg-red-600 text-white py-4">
+        <section className="bg-gradient-to-r from-purple-700 to-purple-600 text-white py-4 shadow-lg">
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-4">
               <div className="flex items-center space-x-2">
                 <Clock className="h-6 w-6 animate-pulse" />
                 <span className="font-bold text-lg">Timely Switcher Deal Expires Friday, Nov 29 at 11:59 PM</span>
               </div>
-              <div className="flex items-center space-x-4 text-2xl font-bold">
+              <div className="flex items-center space-x-4 text-2xl font-bold animate-subtle-pulse">
                 <div className="text-center">
-                  <div className="bg-red-700 px-3 py-2 rounded">{timeLeft.days}</div>
+                  <div className="bg-purple-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{timeLeft.days}</div>
                   <div className="text-xs mt-1">DAYS</div>
                 </div>
                 <span>:</span>
                 <div className="text-center">
-                  <div className="bg-red-700 px-3 py-2 rounded">{String(timeLeft.hours).padStart(2, '0')}</div>
+                  <div className="bg-purple-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{String(timeLeft.hours).padStart(2, '0')}</div>
                   <div className="text-xs mt-1">HOURS</div>
                 </div>
                 <span>:</span>
                 <div className="text-center">
-                  <div className="bg-red-700 px-3 py-2 rounded">{String(timeLeft.minutes).padStart(2, '0')}</div>
+                  <div className="bg-purple-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{String(timeLeft.minutes).padStart(2, '0')}</div>
                   <div className="text-xs mt-1">MINS</div>
                 </div>
                 <span>:</span>
                 <div className="text-center">
-                  <div className="bg-red-700 px-3 py-2 rounded">{String(timeLeft.seconds).padStart(2, '0')}</div>
+                  <div className="bg-purple-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{String(timeLeft.seconds).padStart(2, '0')}</div>
                   <div className="text-xs mt-1">SECS</div>
                 </div>
               </div>
@@ -426,34 +426,34 @@ function App() {
               <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Still Fighting With Timely?</h2>
               <div className="grid md:grid-cols-2 gap-12">
                 <div>
-                  <h3 className="text-2xl font-bold text-red-600 mb-6">Timely Problems</h3>
+                  <h3 className="text-2xl font-bold text-gray-700 mb-6">Timely Problems</h3>
                   <ul className="space-y-4">
                     <li className="flex items-start space-x-3">
-                      <span className="text-red-500 text-2xl">❌</span>
+                      <span className="text-gray-500 text-2xl">❌</span>
                       <div>
                         <p className="text-gray-900 font-semibold">Random crashes during peak hours</p>
                       </div>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <span className="text-red-500 text-2xl">❌</span>
+                      <span className="text-gray-500 text-2xl">❌</span>
                       <div>
                         <p className="text-gray-900 font-semibold">Clunky interface your staff hates</p>
                       </div>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <span className="text-red-500 text-2xl">❌</span>
+                      <span className="text-gray-500 text-2xl">❌</span>
                       <div>
                         <p className="text-gray-900 font-semibold">Inventory tracking that doesn't work</p>
                       </div>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <span className="text-red-500 text-2xl">❌</span>
+                      <span className="text-gray-500 text-2xl">❌</span>
                       <div>
                         <p className="text-gray-900 font-semibold">Support tickets that take days</p>
                       </div>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <span className="text-red-500 text-2xl">❌</span>
+                      <span className="text-gray-500 text-2xl">❌</span>
                       <div>
                         <p className="text-gray-900 font-semibold">Price increases with no improvements</p>
                       </div>
@@ -461,34 +461,34 @@ function App() {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-green-600 mb-6">HEYA Solutions</h3>
+                  <h3 className="text-2xl font-bold text-purple-600 mb-6">HEYA Solutions</h3>
                   <ul className="space-y-4">
                     <li className="flex items-start space-x-3">
-                      <span className="text-green-500 text-2xl">✅</span>
+                      <span className="text-teal-500 text-2xl">✅</span>
                       <div>
                         <p className="text-gray-900 font-semibold">Rock-solid reliability, 99.9% uptime</p>
                       </div>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <span className="text-green-500 text-2xl">✅</span>
+                      <span className="text-teal-500 text-2xl">✅</span>
                       <div>
                         <p className="text-gray-900 font-semibold">Intuitive design staff learn in minutes</p>
                       </div>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <span className="text-green-500 text-2xl">✅</span>
+                      <span className="text-teal-500 text-2xl">✅</span>
                       <div>
                         <p className="text-gray-900 font-semibold">Real-time inventory that actually works</p>
                       </div>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <span className="text-green-500 text-2xl">✅</span>
+                      <span className="text-teal-500 text-2xl">✅</span>
                       <div>
                         <p className="text-gray-900 font-semibold">30-minute support response guarantee</p>
                       </div>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <span className="text-green-500 text-2xl">✅</span>
+                      <span className="text-teal-500 text-2xl">✅</span>
                       <div>
                         <p className="text-gray-900 font-semibold">Locked pricing, no surprises</p>
                       </div>
@@ -505,13 +505,13 @@ function App() {
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Sound Familiar?</h2>
               <div className="grid md:grid-cols-3 gap-6 mb-8">
-                <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-red-500">
+                <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-gray-400">
                   <p className="text-gray-700 font-medium">System crashes during Saturday rush</p>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-red-500">
+                <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-gray-400">
                   <p className="text-gray-700 font-medium">Double bookings losing you clients</p>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-red-500">
+                <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-gray-400">
                   <p className="text-gray-700 font-medium">Fighting with tech instead of focusing on customers</p>
                 </div>
               </div>
@@ -540,35 +540,35 @@ function App() {
               
               <div className="grid md:grid-cols-5 gap-4 mb-12">
                 <div className="text-center">
-                  <div className="bg-red-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl">1</div>
+                  <div className="bg-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl shadow-lg">1</div>
                   <h4 className="font-bold mb-2">Export from Timely</h4>
                   <p className="text-sm text-gray-600">(we guide you)</p>
                 </div>
                 <div className="text-center">
-                  <div className="bg-red-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl">2</div>
+                  <div className="bg-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl shadow-lg">2</div>
                   <h4 className="font-bold mb-2">Import to HEYA</h4>
                   <p className="text-sm text-gray-600">(automatic)</p>
                 </div>
                 <div className="text-center">
-                  <div className="bg-red-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl">3</div>
+                  <div className="bg-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl shadow-lg">3</div>
                   <h4 className="font-bold mb-2">Keep your Tyro</h4>
                   <p className="text-sm text-gray-600">(no new hardware)</p>
                 </div>
                 <div className="text-center">
-                  <div className="bg-red-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl">4</div>
+                  <div className="bg-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl shadow-lg">4</div>
                   <h4 className="font-bold mb-2">Train your team</h4>
                   <p className="text-sm text-gray-600">(one session)</p>
                 </div>
                 <div className="text-center">
-                  <div className="bg-red-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl">5</div>
+                  <div className="bg-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 font-bold text-xl shadow-lg">5</div>
                   <h4 className="font-bold mb-2">Go live</h4>
                   <p className="text-sm text-gray-600">(without missing a booking)</p>
                 </div>
               </div>
               
-              <div className="bg-green-50 border-l-4 border-green-500 p-6 text-center">
+              <div className="bg-purple-50 border-l-4 border-purple-500 p-6 text-center">
                 <p className="text-lg text-gray-700">
-                  <strong className="text-green-700">Our migration specialist handles everything.</strong> You don't lose a single customer record or booking history.
+                  <strong className="text-purple-700">Our migration specialist handles everything.</strong> You don't lose a single customer record or booking history.
                 </p>
               </div>
             </div>
@@ -595,57 +595,57 @@ function App() {
                   <thead>
                     <tr className="bg-gray-100">
                       <th className="px-6 py-4 text-left font-bold text-gray-900">Feature</th>
-                      <th className="px-6 py-4 text-center font-bold text-red-600">Timely</th>
+                      <th className="px-6 py-4 text-center font-bold text-gray-600">Timely</th>
                       <th className="px-6 py-4 text-center font-bold text-green-600">HEYA</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
                     <tr>
                       <td className="px-6 py-4 font-medium">Monthly Cost</td>
-                      <td className="px-6 py-4 text-center text-red-600">$89+</td>
-                      <td className="px-6 py-4 text-center text-green-600 font-bold">$49</td>
+                      <td className="px-6 py-4 text-center text-gray-600">$89+</td>
+                      <td className="px-6 py-4 text-center text-purple-600 font-bold">$49</td>
                     </tr>
                     <tr className="bg-gray-50">
                       <td className="px-6 py-4 font-medium">Setup Fee</td>
-                      <td className="px-6 py-4 text-center text-red-600">$299</td>
-                      <td className="px-6 py-4 text-center text-green-600 font-bold">$0</td>
+                      <td className="px-6 py-4 text-center text-gray-600">$299</td>
+                      <td className="px-6 py-4 text-center text-purple-600 font-bold">$0</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Tyro Integration</td>
-                      <td className="px-6 py-4 text-center text-red-600">Problematic</td>
-                      <td className="px-6 py-4 text-center text-green-600 font-bold">Seamless</td>
+                      <td className="px-6 py-4 text-center text-gray-600">Problematic</td>
+                      <td className="px-6 py-4 text-center text-purple-600 font-bold">Seamless</td>
                     </tr>
                     <tr className="bg-gray-50">
                       <td className="px-6 py-4 font-medium">System Crashes</td>
-                      <td className="px-6 py-4 text-center text-red-600">Daily</td>
-                      <td className="px-6 py-4 text-center text-green-600 font-bold">Never</td>
+                      <td className="px-6 py-4 text-center text-gray-600">Daily</td>
+                      <td className="px-6 py-4 text-center text-purple-600 font-bold">Never</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Support Response</td>
-                      <td className="px-6 py-4 text-center text-red-600">2-3 days</td>
-                      <td className="px-6 py-4 text-center text-green-600 font-bold">30 minutes</td>
+                      <td className="px-6 py-4 text-center text-gray-600">2-3 days</td>
+                      <td className="px-6 py-4 text-center text-purple-600 font-bold">30 minutes</td>
                     </tr>
                     <tr className="bg-gray-50">
                       <td className="px-6 py-4 font-medium">Data Export</td>
-                      <td className="px-6 py-4 text-center text-red-600">Complicated</td>
-                      <td className="px-6 py-4 text-center text-green-600 font-bold">One click</td>
+                      <td className="px-6 py-4 text-center text-gray-600">Complicated</td>
+                      <td className="px-6 py-4 text-center text-purple-600 font-bold">One click</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Free Trial</td>
-                      <td className="px-6 py-4 text-center text-red-600">14 days</td>
-                      <td className="px-6 py-4 text-center text-green-600 font-bold">30 days</td>
+                      <td className="px-6 py-4 text-center text-gray-600">14 days</td>
+                      <td className="px-6 py-4 text-center text-purple-600 font-bold">30 days</td>
                     </tr>
                     <tr className="bg-gray-50">
                       <td className="px-6 py-4 font-medium">Contract Lock-in</td>
-                      <td className="px-6 py-4 text-center text-red-600">12 months</td>
-                      <td className="px-6 py-4 text-center text-green-600 font-bold">Month-to-month</td>
+                      <td className="px-6 py-4 text-center text-gray-600">12 months</td>
+                      <td className="px-6 py-4 text-center text-purple-600 font-bold">Month-to-month</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               
               <div className="mt-12 text-center">
-                <Button size="lg" className="bg-red-600 hover:bg-red-700 text-lg px-8 py-3" asChild>
+                <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5" asChild>
                   <a href="#get-started">
                     Claim Your 6 Months Free
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -673,38 +673,38 @@ function App() {
               
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-2xl font-bold text-red-600 mb-6">Timely Problems 😔</h3>
+                  <h3 className="text-2xl font-bold text-gray-700 mb-6">Timely Problems 😔</h3>
                   <ul className="space-y-4">
                     <li className="flex items-start space-x-3">
-                      <span className="text-red-500 text-xl">✗</span>
+                      <span className="text-gray-500 text-xl">✗</span>
                       <div>
                         <strong className="text-gray-900">Constant sync issues</strong>
                         <p className="text-gray-600">Calendar doesn't update in real-time, leading to double bookings</p>
                       </div>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <span className="text-red-500 text-xl">✗</span>
+                      <span className="text-gray-500 text-xl">✗</span>
                       <div>
                         <strong className="text-gray-900">Limited payment options</strong>
                         <p className="text-gray-600">No integrated POS, manual payment tracking</p>
                       </div>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <span className="text-red-500 text-xl">✗</span>
+                      <span className="text-gray-500 text-xl">✗</span>
                       <div>
                         <strong className="text-gray-900">Poor support</strong>
                         <p className="text-gray-600">International support team, long wait times</p>
                       </div>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <span className="text-red-500 text-xl">✗</span>
+                      <span className="text-gray-500 text-xl">✗</span>
                       <div>
                         <strong className="text-gray-900">Complicated interface</strong>
                         <p className="text-gray-600">Staff need extensive training, frequent errors</p>
                       </div>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <span className="text-red-500 text-xl">✗</span>
+                      <span className="text-gray-500 text-xl">✗</span>
                       <div>
                         <strong className="text-gray-900">Expensive add-ons</strong>
                         <p className="text-gray-600">Basic features cost extra, pricing adds up quickly</p>
@@ -714,38 +714,38 @@ function App() {
                 </div>
                 
                 <div>
-                  <h3 className="text-2xl font-bold text-green-600 mb-6">Heya Solutions ✨</h3>
+                  <h3 className="text-2xl font-bold text-purple-600 mb-6">Heya Solutions ✨</h3>
                   <ul className="space-y-4">
                     <li className="flex items-start space-x-3">
-                      <span className="text-green-500 text-xl">✓</span>
+                      <span className="text-teal-500 text-xl">✓</span>
                       <div>
                         <strong className="text-gray-900">Real-time updates every 10 seconds</strong>
                         <p className="text-gray-600">Calendar syncs instantly across all devices, zero conflicts</p>
                       </div>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <span className="text-green-500 text-xl">✓</span>
+                      <span className="text-teal-500 text-xl">✓</span>
                       <div>
                         <strong className="text-gray-900">Integrated Tyro POS</strong>
                         <p className="text-gray-600">Complete payment solution with automatic reconciliation</p>
                       </div>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <span className="text-green-500 text-xl">✓</span>
+                      <span className="text-teal-500 text-xl">✓</span>
                       <div>
                         <strong className="text-gray-900">Australian support team</strong>
                         <p className="text-gray-600">Local team that answers calls, on-site help available</p>
                       </div>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <span className="text-green-500 text-xl">✓</span>
+                      <span className="text-teal-500 text-xl">✓</span>
                       <div>
                         <strong className="text-gray-900">Intuitive design</strong>
                         <p className="text-gray-600">Staff trained in under 30 minutes, minimal errors</p>
                       </div>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <span className="text-green-500 text-xl">✓</span>
+                      <span className="text-teal-500 text-xl">✓</span>
                       <div>
                         <strong className="text-gray-900">All-inclusive pricing</strong>
                         <p className="text-gray-600">Everything included, no hidden fees or surprise charges</p>
@@ -756,7 +756,7 @@ function App() {
               </div>
               
               <div className="mt-12 text-center">
-                <Button size="lg" className="bg-green-600 hover:bg-green-700 text-lg px-8 py-3" asChild>
+                <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5" asChild>
                   <a href="#get-started">
                     Claim Your 50% Discount Now
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -784,19 +784,19 @@ function App() {
                   </div>
                   <ul className="space-y-3 text-lg max-w-2xl mx-auto text-left">
                     <li className="flex items-start space-x-3">
-                      <CheckCircle className="h-6 w-6 text-green-300 flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="h-6 w-6 text-purple-200 flex-shrink-0 mt-0.5" />
                       <span>30-day free trial (no card required)</span>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <CheckCircle className="h-6 w-6 text-green-300 flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="h-6 w-6 text-purple-200 flex-shrink-0 mt-0.5" />
                       <span>Then just $49/month (normally $99)</span>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <CheckCircle className="h-6 w-6 text-green-300 flex-shrink-0 mt-0.5" />
-                      <span className="font-bold">Sign for 12 months → Get 6 MONTHS FREE</span>
+                      <CheckCircle className="h-6 w-6 text-purple-200 flex-shrink-0 mt-0.5" />
+                      <span className="font-bold">Sign for 12 months → Get 6 MONTHS <span className="free-badge">FREE</span></span>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <CheckCircle className="h-6 w-6 text-green-300 flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="h-6 w-6 text-purple-200 flex-shrink-0 mt-0.5" />
                       <span>That's $294 back in your pocket</span>
                     </li>
                   </ul>
@@ -813,7 +813,7 @@ function App() {
                 
                 <Button size="lg" className="bg-white text-purple-600 hover:bg-gray-100 text-xl px-10 py-4" asChild>
                   <a href="#get-started">
-                    Claim My 6 Free Months
+                    <>Claim My 6 <span className="free-badge">FREE</span> Months</>
                     <ArrowRight className="ml-2 h-6 w-6" />
                   </a>
                 </Button>
@@ -836,25 +836,25 @@ function App() {
               <div className="bg-gray-50 rounded-2xl p-8 shadow-lg">
                 <div className="grid md:grid-cols-2 gap-8 mb-8">
                   <div className="text-center">
-                    <h3 className="text-2xl font-bold text-red-600 mb-4">Staying with Timely</h3>
+                    <h3 className="text-2xl font-bold text-gray-700 mb-4">Staying with Timely</h3>
                     <div className="space-y-2">
                       <p className="text-lg">Monthly: <span className="font-bold">$89</span></p>
                       <p className="text-lg">Yearly: <span className="font-bold">$1,068</span></p>
-                      <p className="text-2xl font-bold text-red-600">3 Years: $3,204</p>
+                      <p className="text-2xl font-bold text-gray-700">3 Years: $3,204</p>
                     </div>
                   </div>
                   <div className="text-center">
-                    <h3 className="text-2xl font-bold text-green-600 mb-4">Switching to HEYA</h3>
+                    <h3 className="text-2xl font-bold text-purple-600 mb-4">Switching to HEYA</h3>
                     <div className="space-y-2">
                       <p className="text-lg">Monthly: <span className="font-bold">$49</span></p>
-                      <p className="text-lg">Year 1: <span className="font-bold">$294</span> (6 months free!)</p>
-                      <p className="text-2xl font-bold text-green-600">3 Years: $1,620</p>
+                      <p className="text-lg">Year 1: <span className="font-bold">$294</span> (6 months <span className="free-badge">FREE</span>)</p>
+                      <p className="text-2xl font-bold text-purple-600">3 Years: $1,620</p>
                     </div>
                   </div>
                 </div>
                 
-                <div className="bg-green-100 rounded-xl p-6 text-center">
-                  <p className="text-3xl font-bold text-green-700 mb-2">
+                <div className="bg-purple-100 rounded-xl p-6 text-center">
+                  <p className="text-3xl font-bold text-purple-700 mb-2">
                     Your 3-Year Savings: $1,584
                   </p>
                   <p className="text-lg text-gray-700">
@@ -864,7 +864,7 @@ function App() {
               </div>
               
               <div className="mt-8 text-center">
-                <Button size="lg" className="bg-green-600 hover:bg-green-700 text-lg px-8 py-3" asChild>
+                <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5" asChild>
                   <a href="#get-started">
                     Start Saving Now
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -937,7 +937,7 @@ function App() {
             <div className="grid md:grid-cols-2 gap-4">
               {features[activeFeature].benefits.map((benefit, index) => (
                 <div key={index} className="flex items-start space-x-3">
-                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-teal-500 mt-0.5 flex-shrink-0" />
                   <span className="text-gray-700">{benefit}</span>
                 </div>
               ))}
@@ -979,7 +979,7 @@ function App() {
       </section>
 
       {/* Switching from Timely Section */}
-      <section className="py-12 bg-gradient-to-r from-green-50 to-blue-50 border-l-4 border-green-500">
+      <section className="py-12 bg-gradient-to-r from-purple-50 to-purple-100 border-l-4 border-purple-500">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -988,7 +988,7 @@ function App() {
             <p className="text-lg text-gray-700 mb-6">
               We will transition you for <strong>FREE</strong> and provide <strong>100% on-call support</strong>
             </p>
-            <Button size="lg" className="bg-green-600 hover:bg-green-700" asChild>
+            <Button size="lg" className="bg-purple-600 hover:bg-purple-700 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5" asChild>
               <a href="#get-started">
                 Get Free Migration
               </a>
@@ -1059,7 +1059,7 @@ function App() {
                   <div>
                     <div className="font-bold text-gray-900 text-lg">Jessica Thompson</div>
                     <div className="text-gray-600">Luxe Beauty Studio, Sydney</div>
-                    <Badge className="mt-2 bg-green-100 text-green-700">Former Timely User (4 years)</Badge>
+                    <Badge className="mt-2 bg-purple-100 text-purple-700">Former Timely User (4 years)</Badge>
                   </div>
                 </CardContent>
               </Card>
@@ -1077,7 +1077,7 @@ function App() {
                   <div>
                     <div className="font-bold text-gray-900 text-lg">Michael Chen</div>
                     <div className="text-gray-600">Urban Cuts Barbershop, Melbourne</div>
-                    <Badge className="mt-2 bg-green-100 text-green-700">Switched from Timely 8 months ago</Badge>
+                    <Badge className="mt-2 bg-purple-100 text-purple-700">Switched from Timely 8 months ago</Badge>
                   </div>
                 </CardContent>
               </Card>
@@ -1095,7 +1095,7 @@ function App() {
                   <div>
                     <div className="font-bold text-gray-900 text-lg">Rachel Martinez</div>
                     <div className="text-gray-600">Serenity Spa & Wellness, Brisbane</div>
-                    <Badge className="mt-2 bg-green-100 text-green-700">Ex-Timely User (2 years)</Badge>
+                    <Badge className="mt-2 bg-purple-100 text-purple-700">Ex-Timely User (2 years)</Badge>
                   </div>
                 </CardContent>
               </Card>
@@ -1169,13 +1169,13 @@ function App() {
                     "Is the 6 months free offer real?"
                   </h3>
                   <p className="text-gray-700">
-                    100% real. No hidden fees. Sign for 12 months, get months 7-12 completely free.
+                    100% real. No hidden fees. Sign for 12 months, get months 7-12 completely <span className="free-badge">FREE</span>.
                   </p>
                 </Card>
               </div>
               
               <div className="mt-12 text-center">
-                <Button size="lg" className="bg-red-600 hover:bg-red-700 text-lg px-8 py-3" asChild>
+                <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5" asChild>
                   <a href="#get-started">
                     Get All Your Questions Answered
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -1304,7 +1304,7 @@ function App() {
                   <ul className="space-y-3 mb-6">
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start space-x-3">
-                        <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                        <CheckCircle className="h-5 w-5 text-teal-500 mt-0.5 flex-shrink-0" />
                         <span className="text-gray-700">{feature}</span>
                       </li>
                     ))}

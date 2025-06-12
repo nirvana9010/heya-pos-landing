@@ -118,3 +118,35 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Timely migration animations */
+@keyframes subtle-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.02); opacity: 0.95; }
+}
+
+@keyframes gentle-glow {
+  0%, 100% { box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3); }
+  50% { box-shadow: 0 4px 20px rgba(124, 58, 237, 0.5); }
+}
+
+.animate-subtle-pulse {
+  animation: subtle-pulse 3s ease-in-out infinite;
+}
+
+.animate-gentle-glow {
+  animation: gentle-glow 3s ease-in-out infinite;
+}
+
+/* Free badge styles */
+.free-badge {
+  background: #F59E0B;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+}
