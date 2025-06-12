@@ -271,10 +271,10 @@ function App() {
             <div>
               {isTimelyMigration ? (
                 <>
-                  <h1 className="text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                  <h1 className="hero-heading text-gray-900 mb-4">
                     Leaving Timely? We'll Pay for Your Move.
                   </h1>
-                  <p className="text-2xl text-gray-700 mb-6 font-medium">
+                  <p className="lead-text text-gray-700 mb-6" style={{ fontWeight: 'var(--font-weight-medium)' }}>
                     Keep your Tyro. Migrate your data. Get 6 months <span className="free-badge">FREE</span> when you switch.
                   </p>
                   <p className="text-lg text-gray-600 mb-8">
@@ -286,12 +286,12 @@ function App() {
                   <Badge className="mb-4 bounce-hover" style={{ background: 'rgba(94, 234, 212, 0.2)', color: 'var(--color-primary)' }}>
                     Proudly Australian-owned and operated
                   </Badge>
-                  <h1 className="text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                  <h1 className="hero-heading text-gray-900 mb-6">
                     The All-in-One Platform{' '}
                     <span className="text-teal-600">Australian Beauty Businesses</span>{' '}
                     Trust
                   </h1>
-                  <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                  <p className="lead-text text-gray-600 mb-8">
                     Join 500+ salons and spas using Heya POS to save 10 hours per week, eliminate double bookings, 
                     and increase customer retention by 25%. No app downloads required.
                   </p>
@@ -324,7 +324,7 @@ function App() {
                           />
                         </div>
                         <CheckCircle className="h-8 w-8" style={{ color: 'var(--color-accent-mint-bright)' }} />
-                        <span className="text-2xl font-semibold text-gray-800">Your Tyro Terminal Just Works With HEYA</span>
+                        <span className="lead-text text-gray-800" style={{ fontWeight: 'var(--font-weight-semibold)' }}>Your Tyro Terminal Just Works With HEYA</span>
                       </div>
                     </div>
                   </div>
@@ -358,7 +358,7 @@ function App() {
               <div className="absolute -bottom-4 -left-4 bg-white p-4 rounded-lg shadow-lg border card-hover">
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 rounded-full animate-pulse" style={{ background: 'var(--color-accent-mint-bright)' }}></div>
-                  <span className="text-sm font-medium">Real-time sync active</span>
+                  <span className="text-small" style={{ fontWeight: 'var(--font-weight-medium)' }}>Real-time sync active</span>
                 </div>
               </div>
             </div>
@@ -441,7 +441,7 @@ function App() {
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                <h2 className="display-heading text-gray-900 mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
                   See the Difference
                 </h2>
                 <p className="text-xl text-gray-600">
@@ -460,42 +460,42 @@ function App() {
                   </thead>
                   <tbody className="divide-y divide-gray-200">
                     <tr>
-                      <td className="px-6 py-4 font-medium">Monthly Cost</td>
+                      <td className="px-6 py-4" style={{ fontWeight: 'var(--font-weight-medium)' }}>Monthly Cost</td>
                       <td className="px-6 py-4 text-center text-gray-600">$89+</td>
                       <td className="px-6 py-4 text-center text-teal-600 font-bold">$49</td>
                     </tr>
                     <tr style={{ backgroundColor: 'var(--color-background-soft)' }}>
-                      <td className="px-6 py-4 font-medium">Setup Fee</td>
+                      <td className="px-6 py-4" style={{ fontWeight: 'var(--font-weight-medium)' }}>Setup Fee</td>
                       <td className="px-6 py-4 text-center text-gray-600">$299</td>
                       <td className="px-6 py-4 text-center text-teal-600 font-bold">$0</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 font-medium">Tyro Integration</td>
+                      <td className="px-6 py-4" style={{ fontWeight: 'var(--font-weight-medium)' }}>Tyro Integration</td>
                       <td className="px-6 py-4 text-center text-gray-600">Problematic</td>
                       <td className="px-6 py-4 text-center text-teal-600 font-bold">Seamless</td>
                     </tr>
                     <tr style={{ backgroundColor: 'var(--color-background-soft)' }}>
-                      <td className="px-6 py-4 font-medium">System Crashes</td>
+                      <td className="px-6 py-4" style={{ fontWeight: 'var(--font-weight-medium)' }}>System Crashes</td>
                       <td className="px-6 py-4 text-center text-gray-600">Daily</td>
                       <td className="px-6 py-4 text-center text-teal-600 font-bold">Never</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 font-medium">Support Response</td>
+                      <td className="px-6 py-4" style={{ fontWeight: 'var(--font-weight-medium)' }}>Support Response</td>
                       <td className="px-6 py-4 text-center text-gray-600">2-3 days</td>
                       <td className="px-6 py-4 text-center text-teal-600 font-bold">30 minutes</td>
                     </tr>
                     <tr style={{ backgroundColor: 'var(--color-background-soft)' }}>
-                      <td className="px-6 py-4 font-medium">Data Export</td>
+                      <td className="px-6 py-4" style={{ fontWeight: 'var(--font-weight-medium)' }}>Data Export</td>
                       <td className="px-6 py-4 text-center text-gray-600">Complicated</td>
                       <td className="px-6 py-4 text-center text-teal-600 font-bold">One click</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 font-medium">Free Trial</td>
+                      <td className="px-6 py-4" style={{ fontWeight: 'var(--font-weight-medium)' }}>Free Trial</td>
                       <td className="px-6 py-4 text-center text-gray-600">14 days</td>
                       <td className="px-6 py-4 text-center text-teal-600 font-bold">30 days</td>
                     </tr>
                     <tr style={{ backgroundColor: 'var(--color-background-soft)' }}>
-                      <td className="px-6 py-4 font-medium">Contract Lock-in</td>
+                      <td className="px-6 py-4" style={{ fontWeight: 'var(--font-weight-medium)' }}>Contract Lock-in</td>
                       <td className="px-6 py-4 text-center text-gray-600">12 months</td>
                       <td className="px-6 py-4 text-center text-teal-600 font-bold">Month-to-month</td>
                     </tr>
@@ -522,7 +522,7 @@ function App() {
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                <h2 className="display-heading text-gray-900 mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
                   Why former Timely users choose Heya
                 </h2>
                 <p className="text-xl text-gray-600">
@@ -635,7 +635,7 @@ function App() {
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <div className="bg-white/10 backdrop-blur border-2 border-white/20 rounded-2xl p-8 md:p-12 card-hover">
-                <h2 className="text-4xl font-bold mb-6 flex items-center justify-center">
+                <h2 className="display-heading mb-6 flex items-center justify-center" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
                   🎉 Limited Time: Timely Refugee Special
                 </h2>
                 
@@ -689,7 +689,7 @@ function App() {
       <section id="features" className="py-20 section-mint" style={{ backgroundColor: 'var(--color-background-primary)' }}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="display-heading text-gray-900 mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
               Everything you need to run your beauty business
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -725,8 +725,8 @@ function App() {
                         {feature.icon}
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900">{feature.title}</h3>
-                        <p className="text-sm text-gray-600">{feature.description}</p>
+                        <h3 className="feature-title text-gray-900">{feature.title}</h3>
+                        <p className="text-small text-gray-600">{feature.description}</p>
                       </div>
                     </div>
                   </button>
@@ -744,7 +744,7 @@ function App() {
 
           {/* Feature Details */}
           <div className="bg-white p-8 rounded-2xl shadow-lg card-hover">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <h3 className="feature-title text-gray-900 mb-4" style={{ fontSize: '1.75rem' }}>
               {features[activeFeature].title}
             </h3>
             <p className="text-gray-600 mb-6">
@@ -766,29 +766,29 @@ function App() {
       <section className="py-16 section-mint" style={{ backgroundColor: 'var(--color-background-primary)' }}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why HEYA?</h2>
+            <h2 className="display-heading text-gray-900 mb-4" style={{ fontSize: '2rem' }}>Why HEYA?</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="text-center">
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 float-animation" style={{ background: 'var(--color-primary)' }}>
                 <MapPin className="h-8 w-8 text-white" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Australian startup</h3>
-              <p className="text-gray-600">We answer when you call</p>
+              <h3 className="feature-title text-gray-900 mb-2">Australian startup</h3>
+              <p className="text-small text-gray-600">We answer when you call</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 float-animation" style={{ background: 'var(--color-primary)', animationDelay: '0.5s' }}>
                 <Users className="h-8 w-8 text-white" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Built for salons</h3>
-              <p className="text-gray-600">We get your business</p>
+              <h3 className="feature-title text-gray-900 mb-2">Built for salons</h3>
+              <p className="text-small text-gray-600">We get your business</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 float-animation" style={{ background: 'var(--color-primary)', animationDelay: '1s' }}>
                 <Star className="h-8 w-8 text-white" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Growing with you</h3>
-              <p className="text-gray-600">Your feedback shapes our product</p>
+              <h3 className="feature-title text-gray-900 mb-2">Growing with you</h3>
+              <p className="text-small text-gray-600">Your feedback shapes our product</p>
             </div>
           </div>
         </div>
@@ -798,10 +798,10 @@ function App() {
       <section className="py-12 section-gradient border-l-4" style={{ background: 'linear-gradient(90deg, rgba(167, 243, 208, 0.2) 0%, rgba(230, 255, 250, 0.3) 100%)', borderColor: 'var(--color-primary)' }}>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <h3 className="display-heading text-gray-900 mb-4" style={{ fontSize: '1.75rem' }}>
               Switching from Timely?
             </h3>
-            <p className="text-lg text-gray-700 mb-6">
+            <p className="lead-text text-gray-700 mb-6">
               We will transition you for <strong>FREE</strong> and provide <strong>100% on-call support</strong>
             </p>
             <Button size="lg" className="btn-primary bounce-hover text-lg px-8 py-3" style={{ backgroundColor: 'var(--color-primary)', color: 'var(--color-text-on-dark)' }} asChild>
@@ -818,7 +818,7 @@ function App() {
         <section id="testimonials" className="py-20 section-teal" style={{ backgroundColor: 'var(--color-background-secondary)' }}>
           <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="display-heading text-gray-900 mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
               Loved by beauty business owners across Australia
             </h2>
             <p className="text-xl text-gray-600">
@@ -834,12 +834,12 @@ function App() {
                       <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                     ))}
                   </div>
-                  <blockquote className="text-gray-700 mb-4 text-lg leading-relaxed">
+                  <blockquote className="testimonial-text text-gray-700 mb-4">
                     "{testimonial.quote}"
                   </blockquote>
                   <div>
-                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                    <div className="text-gray-600">{testimonial.business}</div>
+                    <div className="text-gray-900" style={{ fontWeight: 'var(--font-weight-semibold)' }}>{testimonial.name}</div>
+                    <div className="text-small text-gray-600">{testimonial.business}</div>
                   </div>
                 </CardContent>
               </Card>
@@ -854,7 +854,7 @@ function App() {
         <section className="py-20 section-mint" style={{ backgroundColor: 'var(--color-background-primary)' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="display-heading text-gray-900 mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
                 Former Timely users share their experience
               </h2>
               <p className="text-xl text-gray-600">
@@ -935,7 +935,7 @@ function App() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                <h2 className="display-heading text-gray-900 mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
                   Your Timely Migration Questions Answered
                 </h2>
                 <p className="text-xl text-gray-600">
@@ -1009,7 +1009,7 @@ function App() {
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                <h2 className="display-heading text-gray-900 mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
                   See Why HEYA is Better
                 </h2>
                 <p className="text-xl text-gray-600">
@@ -1093,7 +1093,7 @@ function App() {
       <section id="pricing" className="py-20 section-teal" style={{ backgroundColor: 'var(--color-background-secondary)' }}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="display-heading text-gray-900 mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
               Simple, transparent pricing
             </h2>
             <p className="text-xl text-gray-600">
@@ -1149,7 +1149,7 @@ function App() {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-white mb-4">
+              <h2 className="display-heading text-white mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
                 Ready to transform your beauty business?
               </h2>
               <p className="text-xl text-teal-100 max-w-2xl mx-auto">
@@ -1194,7 +1194,7 @@ function App() {
               <div className="bg-white rounded-lg p-8 shadow-xl">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <Label htmlFor="name" className="text-gray-700 font-medium">Your Name</Label>
+                    <Label htmlFor="name" className="text-gray-700" style={{ fontWeight: 'var(--font-weight-medium)' }}>Your Name</Label>
                     <Input
                       id="name"
                       name="name"
@@ -1208,7 +1208,7 @@ function App() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="shopName" className="text-gray-700 font-medium">Shop Name</Label>
+                    <Label htmlFor="shopName" className="text-gray-700" style={{ fontWeight: 'var(--font-weight-medium)' }}>Shop Name</Label>
                     <Input
                       id="shopName"
                       name="shopName"
@@ -1222,7 +1222,7 @@ function App() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="postCode" className="text-gray-700 font-medium">Post Code</Label>
+                    <Label htmlFor="postCode" className="text-gray-700" style={{ fontWeight: 'var(--font-weight-medium)' }}>Post Code</Label>
                     <Input
                       id="postCode"
                       name="postCode"
@@ -1238,7 +1238,7 @@ function App() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="mobilePhone" className="text-gray-700 font-medium">Mobile Phone</Label>
+                    <Label htmlFor="mobilePhone" className="text-gray-700" style={{ fontWeight: 'var(--font-weight-medium)' }}>Mobile Phone</Label>
                     <Input
                       id="mobilePhone"
                       name="mobilePhone"
