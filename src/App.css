@@ -43,37 +43,88 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  
+  /* =================================
+     PRIMARY BACKGROUNDS
+     ================================= */
+  --color-background-primary: #F0FFF4;      /* Soft mint - main background */
+  --color-background-secondary: #E6FFFA;    /* Soft teal - alternate sections */
+  --color-background-soft: #F5FFF5;         /* Even lighter mint - subtle areas */
+  --color-surface: #FFFFFF;                 /* White - cards and overlays */
+  
+  /* Background Gradients for Hero/Special Sections */
+  --gradient-hero: linear-gradient(135deg, #A7F3D0 0%, #E6FFFA 50%, #FEFCE8 100%);
+  --gradient-subtle: linear-gradient(180deg, #F0FFF4 0%, #E6FFFA 100%);
+  --gradient-mint-glow: radial-gradient(circle at top right, rgba(167, 243, 208, 0.3), transparent 50%);
+  
+  /* =================================
+     PRIMARY COLORS
+     ================================= */
+  --color-primary: #0F766E;                 /* Deep teal - primary CTAs */
+  --color-primary-hover: #134E4A;           /* Darker teal - hover state */
+  --color-primary-light: #10B981;           /* Medium teal - secondary actions */
+  --color-primary-dark: #064E3B;            /* Darkest teal - emphasis */
+  
+  /* =================================
+     TEXT COLORS
+     ================================= */
+  --color-text-primary: #0F172A;            /* Nearly black - main text */
+  --color-text-secondary: #334155;          /* Slate gray - secondary text */
+  --color-text-tertiary: #64748B;           /* Light gray - metadata */
+  --color-text-on-dark: #FFFFFF;            /* White - text on dark backgrounds */
+  --color-text-mint: #0F766E;               /* Teal - links and accents */
+  
+  /* =================================
+     PLAYFUL ACCENT COLORS
+     ================================= */
+  --color-accent-coral: #FF6B6B;            /* Coral pink - energy */
+  --color-accent-peach: #FFB088;            /* Soft peach - warmth */
+  --color-accent-lavender: #C7B2FF;         /* Light purple - luxury */
+  --color-accent-yellow: #FCD34D;           /* Sunny yellow - happiness */
+  --color-accent-mint-bright: #5DE0A6;      /* Bright mint - freshness */
+  
+  /* =================================
+     SEMANTIC COLORS
+     ================================= */
+  --color-success: #059669;                 /* Green - different from primary */
+  --color-warning: #F59E0B;                 /* Amber - stands out on mint */
+  --color-error: #DC2626;                   /* Red - urgent actions */
+  --color-info: #0891B2;                    /* Cyan - informational */
+  
+  /* =================================
+     UI ELEMENT COLORS
+     ================================= */
+  --color-border: rgba(15, 118, 110, 0.15); /* Tinted mint border */
+  --color-border-light: rgba(15, 118, 110, 0.08);
+  --color-shadow: rgba(15, 118, 110, 0.1);  /* Tinted shadows */
+  --color-focus-ring: rgba(15, 118, 110, 0.3);
+  
+  /* =================================
+     INTERACTIVE STATES
+     ================================= */
+  --color-hover-overlay: rgba(15, 118, 110, 0.05);
+  --color-active-overlay: rgba(15, 118, 110, 0.1);
+  --color-selected-bg: rgba(94, 234, 212, 0.2);
+  
+  /* Legacy mapping for existing code */
+  --background: #F0FFF4;
+  --foreground: #0F172A;
+  --card: #FFFFFF;
+  --card-foreground: #0F172A;
+  --popover: #FFFFFF;
+  --popover-foreground: #0F172A;
+  --primary: #0F766E;
+  --primary-foreground: #FFFFFF;
+  --secondary: #E6FFFA;
+  --secondary-foreground: #0F172A;
+  --muted: #E6FFFA;
+  --muted-foreground: #64748B;
+  --accent: #10B981;
+  --accent-foreground: #FFFFFF;
+  --destructive: #DC2626;
+  --border: rgba(15, 118, 110, 0.15);
+  --input: rgba(15, 118, 110, 0.15);
+  --ring: rgba(15, 118, 110, 0.3);
 }
 
 .dark {
@@ -126,8 +177,28 @@
 }
 
 @keyframes gentle-glow {
-  0%, 100% { box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3); }
-  50% { box-shadow: 0 4px 20px rgba(79, 70, 229, 0.5); }
+  0%, 100% { box-shadow: 0 4px 14px rgba(15, 118, 110, 0.3); }
+  50% { box-shadow: 0 4px 20px rgba(15, 118, 110, 0.5); }
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Pulse Animation for CTAs */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.7); }
+  70% { box-shadow: 0 0 0 10px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+/* Gradient Animation */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .animate-subtle-pulse {
@@ -138,15 +209,91 @@
   animation: gentle-glow 3s ease-in-out infinite;
 }
 
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+.gradient-animated {
+  background: var(--gradient-hero);
+  background-size: 200% 200%;
+  animation: gradient-shift 5s ease infinite;
+}
+
+/* Bounce on Hover */
+.bounce-hover {
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.bounce-hover:hover {
+  transform: scale(1.05);
+}
+
 /* Free badge styles */
 .free-badge {
-  background: #F59E0B;
-  color: white;
+  background: var(--color-accent-yellow);
+  color: var(--color-text-primary);
   font-size: 12px;
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: 20px;
   font-weight: 600;
   display: inline-block;
   margin-left: 8px;
   vertical-align: middle;
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+  border: 1px solid var(--color-border-light);
+  box-shadow: 0 4px 20px var(--color-shadow);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px var(--color-shadow);
+  border-color: var(--color-border);
+}
+
+/* Button base styles */
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-text-on-dark);
+  font-weight: 600;
+  border-radius: 12px;
+  border: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 4px 15px var(--color-shadow);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+  transform: scale(1.05) rotate(-1deg);
+  box-shadow: 0 6px 20px var(--color-shadow);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* Section backgrounds */
+.section-mint {
+  background: var(--color-background-primary);
+}
+
+.section-white {
+  background: var(--color-surface);
+}
+
+.section-teal {
+  background: var(--color-background-secondary);
+}
+
+.section-gradient {
+  background: var(--gradient-hero);
+  background-size: 200% 200%;
+  animation: gradient-shift 5s ease infinite;
 }

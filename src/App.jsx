@@ -237,21 +237,21 @@ function App() {
   ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background-primary" style={{ backgroundColor: 'var(--color-background-primary)' }}>
       {/* Header */}
       <header className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-gradient-to-br from-teal-600 to-teal-700 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">H</span>
             </div>
             <span className="text-xl font-bold text-gray-900">Heya POS</span>
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#features" className="text-gray-600 hover:text-indigo-600 transition-colors">Features</a>
-            <a href="#pricing" className="text-gray-600 hover:text-indigo-600 transition-colors">Pricing</a>
-            <a href="#testimonials" className="text-gray-600 hover:text-indigo-600 transition-colors">Testimonials</a>
-            <Button className="bg-indigo-600 hover:bg-indigo-700" asChild>
+            <a href="#features" className="text-gray-600 hover:text-teal-600 transition-colors">Features</a>
+            <a href="#pricing" className="text-gray-600 hover:text-teal-600 transition-colors">Pricing</a>
+            <a href="#testimonials" className="text-gray-600 hover:text-teal-600 transition-colors">Testimonials</a>
+            <Button className="btn-primary bounce-hover" style={{ backgroundColor: 'var(--color-primary)', color: 'var(--color-text-on-dark)' }} asChild>
               <a href="#get-started">
                 Start Free Trial
               </a>
@@ -261,8 +261,12 @@ function App() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-indigo-50 to-white">
-        <div className="container mx-auto px-4">
+      <section className="py-20 gradient-animated section-gradient relative overflow-hidden" style={{ background: 'var(--gradient-hero)', backgroundSize: '200% 200%' }}>
+        {/* Floating decorative elements */}
+        <div className="absolute top-10 left-10 w-20 h-20 rounded-full opacity-20 float-animation" style={{ background: 'var(--color-accent-mint-bright)' }}></div>
+        <div className="absolute top-32 right-20 w-16 h-16 rounded-full opacity-20 float-animation" style={{ background: 'var(--color-accent-coral)', animationDelay: '1s' }}></div>
+        <div className="absolute bottom-20 left-1/3 w-24 h-24 rounded-full opacity-15 float-animation" style={{ background: 'var(--color-accent-lavender)', animationDelay: '2s' }}></div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               {isTimelyMigration ? (
@@ -279,12 +283,12 @@ function App() {
                 </>
               ) : (
                 <>
-                  <Badge className="mb-4 bg-indigo-100 text-indigo-700 hover:bg-indigo-100">
+                  <Badge className="mb-4 bounce-hover" style={{ background: 'rgba(94, 234, 212, 0.2)', color: 'var(--color-primary)' }}>
                     Proudly Australian-owned and operated
                   </Badge>
                   <h1 className="text-5xl font-bold text-gray-900 mb-6 leading-tight">
                     The All-in-One Platform{' '}
-                    <span className="text-indigo-600">Australian Beauty Businesses</span>{' '}
+                    <span className="text-teal-600">Australian Beauty Businesses</span>{' '}
                     Trust
                   </h1>
                   <p className="text-xl text-gray-600 mb-8 leading-relaxed">
@@ -294,13 +298,13 @@ function App() {
                 </>
               )}
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button size="lg" className={isTimelyMigration ? "bg-indigo-600 hover:bg-indigo-700 text-lg px-8 py-3" : "bg-indigo-600 hover:bg-indigo-700 text-lg px-8 py-3"} asChild>
+                <Button size="lg" className={isTimelyMigration ? "btn-primary bounce-hover text-lg px-8 py-3" : "btn-primary bounce-hover text-lg px-8 py-3"} style={{ backgroundColor: 'var(--color-primary)', color: 'var(--color-text-on-dark)' }} asChild>
                   <a href="#get-started">
                     {isTimelyMigration ? <>Claim 6 Months <span className="free-badge">FREE</span></> : 'Start Your Free 30-Day Trial'}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
-                <Button size="lg" variant="outline" className={isTimelyMigration ? "border-indigo-600 text-indigo-600 hover:bg-indigo-50 text-lg px-8 py-3" : "border-indigo-600 text-indigo-600 hover:bg-indigo-50 text-lg px-8 py-3"} asChild>
+                <Button size="lg" variant="outline" className={isTimelyMigration ? "border-2 text-lg px-8 py-3 bounce-hover" : "border-2 text-lg px-8 py-3 bounce-hover"} style={{ borderColor: 'var(--color-primary)', color: 'var(--color-primary)' }} asChild>
                   <a href="tel:0432648531">
                     <Phone className="mr-2 h-5 w-5" />
                     {isTimelyMigration ? 'Book 10-Min Demo' : 'Call Nick: 0432 648 531'}
@@ -310,35 +314,35 @@ function App() {
               {isTimelyMigration && (
                 <>
                   <div className="flex items-center justify-start mb-6">
-                    <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-8 py-4 rounded-xl border-2 border-gray-300 shadow-md">
+                    <div className="px-8 py-4 rounded-xl border-2 shadow-md card-hover" style={{ background: 'linear-gradient(135deg, var(--color-surface) 0%, var(--color-background-soft) 100%)', borderColor: 'var(--color-border)' }}>
                       <div className="flex items-center space-x-4">
-                        <div className="bg-gray-800 p-3 rounded">
+                        <div className="bg-gray-800 p-3 rounded bounce-hover">
                           <img 
                             src={tyroLogo} 
                             alt="Tyro" 
                             className="h-10 w-auto"
                           />
                         </div>
-                        <CheckCircle className="h-8 w-8 text-teal-500" />
+                        <CheckCircle className="h-8 w-8" style={{ color: 'var(--color-accent-mint-bright)' }} />
                         <span className="text-2xl font-semibold text-gray-800">Your Tyro Terminal Just Works With HEYA</span>
                       </div>
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-4 text-sm text-gray-600">
                     <div className="flex items-center space-x-2">
-                      <CheckCircle className="h-5 w-5 text-teal-500" />
+                      <CheckCircle className="h-5 w-5" style={{ color: 'var(--color-accent-mint-bright)' }} />
                       <span>Keep Your Tyro Terminal</span>
                     </div>
                   <div className="flex items-center space-x-2">
-                    <CheckCircle className="h-5 w-5 text-green-500" />
+                    <CheckCircle className="h-5 w-5" style={{ color: 'var(--color-accent-mint-bright)' }} />
                     <span>24-Hour Migration</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <CheckCircle className="h-5 w-5 text-green-500" />
+                    <CheckCircle className="h-5 w-5" style={{ color: 'var(--color-accent-mint-bright)' }} />
                     <span>No Setup Fees</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <CheckCircle className="h-5 w-5 text-green-500" />
+                    <CheckCircle className="h-5 w-5" style={{ color: 'var(--color-accent-mint-bright)' }} />
                     <span>Australian Support</span>
                   </div>
                 </div>
@@ -349,11 +353,11 @@ function App() {
               <img 
                 src={dashboardOverview} 
                 alt="Heya POS Dashboard Overview" 
-                className="rounded-lg shadow-2xl border"
+                className="rounded-lg shadow-2xl border card-hover"
               />
-              <div className="absolute -bottom-4 -left-4 bg-white p-4 rounded-lg shadow-lg border">
+              <div className="absolute -bottom-4 -left-4 bg-white p-4 rounded-lg shadow-lg border card-hover">
                 <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-teal-500 rounded-full animate-pulse"></div>
+                  <div className="w-3 h-3 rounded-full animate-pulse" style={{ background: 'var(--color-accent-mint-bright)' }}></div>
                   <span className="text-sm font-medium">Real-time sync active</span>
                 </div>
               </div>
@@ -364,7 +368,7 @@ function App() {
 
       {/* Countdown Timer for Timely Users - Hidden for now, can be used for actual promos */}
       {false && isTimelyMigration && (
-        <section className="bg-gradient-to-r from-indigo-700 to-indigo-600 text-white py-4 shadow-lg">
+        <section className="bg-gradient-to-r from-teal-700 to-teal-600 text-white py-4 shadow-lg">
           <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-4">
               <div className="flex items-center space-x-2">
@@ -373,22 +377,22 @@ function App() {
               </div>
               <div className="flex items-center space-x-4 text-2xl font-bold animate-subtle-pulse">
                 <div className="text-center">
-                  <div className="bg-indigo-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{timeLeft.days}</div>
+                  <div className="bg-teal-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{timeLeft.days}</div>
                   <div className="text-xs mt-1">DAYS</div>
                 </div>
                 <span>:</span>
                 <div className="text-center">
-                  <div className="bg-indigo-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{String(timeLeft.hours).padStart(2, '0')}</div>
+                  <div className="bg-teal-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{String(timeLeft.hours).padStart(2, '0')}</div>
                   <div className="text-xs mt-1">HOURS</div>
                 </div>
                 <span>:</span>
                 <div className="text-center">
-                  <div className="bg-indigo-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{String(timeLeft.minutes).padStart(2, '0')}</div>
+                  <div className="bg-teal-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{String(timeLeft.minutes).padStart(2, '0')}</div>
                   <div className="text-xs mt-1">MINS</div>
                 </div>
                 <span>:</span>
                 <div className="text-center">
-                  <div className="bg-indigo-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{String(timeLeft.seconds).padStart(2, '0')}</div>
+                  <div className="bg-teal-800 px-3 py-2 rounded-lg shadow-lg animate-gentle-glow">{String(timeLeft.seconds).padStart(2, '0')}</div>
                   <div className="text-xs mt-1">SECS</div>
                 </div>
               </div>
@@ -398,29 +402,29 @@ function App() {
       )}
 
       {/* Trust Bar */}
-      <section className="py-8 bg-white border-b">
+      <section className="py-8 section-white border-b" style={{ backgroundColor: 'var(--color-surface)' }}>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center justify-center">
             <div className="text-center">
-              <div className="flex items-center justify-center space-x-2 text-indigo-600">
+              <div className="flex items-center justify-center space-x-2 text-teal-600">
                 <MapPin className="h-5 w-5" />
                 <span className="font-semibold">Australian Owned</span>
               </div>
             </div>
             <div className="text-center">
-              <div className="flex items-center justify-center space-x-2 text-indigo-600">
+              <div className="flex items-center justify-center space-x-2 text-teal-600">
                 <Award className="h-5 w-5" />
                 <span className="font-semibold">Tyro Certified</span>
               </div>
             </div>
             <div className="text-center">
-              <div className="flex items-center justify-center space-x-2 text-indigo-600">
+              <div className="flex items-center justify-center space-x-2 text-teal-600">
                 <Zap className="h-5 w-5" />
                 <span className="font-semibold">24-Hour Setup</span>
               </div>
             </div>
             <div className="text-center">
-              <div className="flex items-center justify-center space-x-2 text-indigo-600">
+              <div className="flex items-center justify-center space-x-2 text-teal-600">
                 <Phone className="h-5 w-5" />
                 <span className="font-semibold">Humans Answer</span>
               </div>
@@ -433,7 +437,7 @@ function App() {
 
       {/* Detailed Comparison Table - Only shows for Timely users */}
       {isTimelyMigration && (
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 section-teal" style={{ backgroundColor: 'var(--color-background-secondary)' }}>
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
@@ -446,9 +450,9 @@ function App() {
               </div>
               
               <div className="overflow-x-auto">
-                <table className="w-full bg-white shadow-lg rounded-lg overflow-hidden">
+                <table className="w-full bg-white shadow-lg rounded-lg overflow-hidden card-hover">
                   <thead>
-                    <tr className="bg-gray-100">
+                    <tr style={{ backgroundColor: 'var(--color-background-secondary)' }}>
                       <th className="px-6 py-4 text-left font-bold text-gray-900">Feature</th>
                       <th className="px-6 py-4 text-center font-bold text-gray-600">Timely</th>
                       <th className="px-6 py-4 text-center font-bold text-green-600">HEYA</th>
@@ -458,49 +462,49 @@ function App() {
                     <tr>
                       <td className="px-6 py-4 font-medium">Monthly Cost</td>
                       <td className="px-6 py-4 text-center text-gray-600">$89+</td>
-                      <td className="px-6 py-4 text-center text-indigo-600 font-bold">$49</td>
+                      <td className="px-6 py-4 text-center text-teal-600 font-bold">$49</td>
                     </tr>
-                    <tr className="bg-gray-50">
+                    <tr style={{ backgroundColor: 'var(--color-background-soft)' }}>
                       <td className="px-6 py-4 font-medium">Setup Fee</td>
                       <td className="px-6 py-4 text-center text-gray-600">$299</td>
-                      <td className="px-6 py-4 text-center text-indigo-600 font-bold">$0</td>
+                      <td className="px-6 py-4 text-center text-teal-600 font-bold">$0</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Tyro Integration</td>
                       <td className="px-6 py-4 text-center text-gray-600">Problematic</td>
-                      <td className="px-6 py-4 text-center text-indigo-600 font-bold">Seamless</td>
+                      <td className="px-6 py-4 text-center text-teal-600 font-bold">Seamless</td>
                     </tr>
-                    <tr className="bg-gray-50">
+                    <tr style={{ backgroundColor: 'var(--color-background-soft)' }}>
                       <td className="px-6 py-4 font-medium">System Crashes</td>
                       <td className="px-6 py-4 text-center text-gray-600">Daily</td>
-                      <td className="px-6 py-4 text-center text-indigo-600 font-bold">Never</td>
+                      <td className="px-6 py-4 text-center text-teal-600 font-bold">Never</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Support Response</td>
                       <td className="px-6 py-4 text-center text-gray-600">2-3 days</td>
-                      <td className="px-6 py-4 text-center text-indigo-600 font-bold">30 minutes</td>
+                      <td className="px-6 py-4 text-center text-teal-600 font-bold">30 minutes</td>
                     </tr>
-                    <tr className="bg-gray-50">
+                    <tr style={{ backgroundColor: 'var(--color-background-soft)' }}>
                       <td className="px-6 py-4 font-medium">Data Export</td>
                       <td className="px-6 py-4 text-center text-gray-600">Complicated</td>
-                      <td className="px-6 py-4 text-center text-indigo-600 font-bold">One click</td>
+                      <td className="px-6 py-4 text-center text-teal-600 font-bold">One click</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Free Trial</td>
                       <td className="px-6 py-4 text-center text-gray-600">14 days</td>
-                      <td className="px-6 py-4 text-center text-indigo-600 font-bold">30 days</td>
+                      <td className="px-6 py-4 text-center text-teal-600 font-bold">30 days</td>
                     </tr>
-                    <tr className="bg-gray-50">
+                    <tr style={{ backgroundColor: 'var(--color-background-soft)' }}>
                       <td className="px-6 py-4 font-medium">Contract Lock-in</td>
                       <td className="px-6 py-4 text-center text-gray-600">12 months</td>
-                      <td className="px-6 py-4 text-center text-indigo-600 font-bold">Month-to-month</td>
+                      <td className="px-6 py-4 text-center text-teal-600 font-bold">Month-to-month</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               
               <div className="mt-12 text-center">
-                <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5" asChild>
+                <Button size="lg" className="btn-primary bounce-hover pulse-animation text-lg px-8 py-3" style={{ backgroundColor: 'var(--color-primary)', color: 'var(--color-text-on-dark)' }} asChild>
                   <a href="#get-started">
                     Claim Your 6 Months Free
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -514,7 +518,7 @@ function App() {
 
       {/* Original Heya vs Timely Comparison - Only shows for Timely users */}
       {false && isTimelyMigration && (
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 section-teal" style={{ backgroundColor: 'var(--color-background-secondary)' }}>
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
@@ -569,7 +573,7 @@ function App() {
                 </div>
                 
                 <div>
-                  <h3 className="text-2xl font-bold text-indigo-600 mb-6">Heya Solutions ✨</h3>
+                  <h3 className="text-2xl font-bold text-teal-600 mb-6">Heya Solutions ✨</h3>
                   <ul className="space-y-4">
                     <li className="flex items-start space-x-3">
                       <span className="text-teal-500 text-xl">✓</span>
@@ -611,7 +615,7 @@ function App() {
               </div>
               
               <div className="mt-12 text-center">
-                <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5" asChild>
+                <Button size="lg" className="btn-primary bounce-hover pulse-animation text-lg px-8 py-3" style={{ backgroundColor: 'var(--color-primary)', color: 'var(--color-text-on-dark)' }} asChild>
                   <a href="#get-started">
                     Claim Your 50% Discount Now
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -625,10 +629,12 @@ function App() {
 
       {/* Special Offer Section - Only shows for Timely users */}
       {isTimelyMigration && (
-        <section className="py-16 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white">
-          <div className="container mx-auto px-4">
+        <section className="py-16 text-white relative overflow-hidden" style={{ background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%)' }}>
+          <div className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10 float-animation" style={{ background: 'var(--color-accent-yellow)' }}></div>
+          <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full opacity-10 float-animation" style={{ background: 'var(--color-accent-mint-bright)', animationDelay: '2s' }}></div>
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="bg-white/10 backdrop-blur border-2 border-white/20 rounded-2xl p-8 md:p-12">
+              <div className="bg-white/10 backdrop-blur border-2 border-white/20 rounded-2xl p-8 md:p-12 card-hover">
                 <h2 className="text-4xl font-bold mb-6 flex items-center justify-center">
                   🎉 Limited Time: Timely Refugee Special
                 </h2>
@@ -639,19 +645,19 @@ function App() {
                   </div>
                   <ul className="space-y-3 text-lg max-w-2xl mx-auto text-left">
                     <li className="flex items-start space-x-3">
-                      <CheckCircle className="h-6 w-6 text-indigo-200 flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="h-6 w-6 text-teal-200 flex-shrink-0 mt-0.5" />
                       <span>30-day free trial (no card required)</span>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <CheckCircle className="h-6 w-6 text-indigo-200 flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="h-6 w-6 text-teal-200 flex-shrink-0 mt-0.5" />
                       <span>Then just $49/month (normally $99)</span>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <CheckCircle className="h-6 w-6 text-indigo-200 flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="h-6 w-6 text-teal-200 flex-shrink-0 mt-0.5" />
                       <span className="font-bold">Sign for 12 months → Get 6 MONTHS <span className="free-badge">FREE</span></span>
                     </li>
                     <li className="flex items-start space-x-3">
-                      <CheckCircle className="h-6 w-6 text-indigo-200 flex-shrink-0 mt-0.5" />
+                      <CheckCircle className="h-6 w-6 text-teal-200 flex-shrink-0 mt-0.5" />
                       <span>That's $294 back in your pocket</span>
                     </li>
                   </ul>
@@ -666,7 +672,7 @@ function App() {
                   </p>
                 </div>
                 
-                <Button size="lg" className="bg-white text-indigo-600 hover:bg-gray-100 text-xl px-10 py-4" asChild>
+                <Button size="lg" className="bg-white bounce-hover text-xl px-10 py-4" style={{ backgroundColor: 'white', color: 'var(--color-primary)' }} asChild>
                   <a href="#get-started">
                     <>Claim My 6 <span className="free-badge">FREE</span> Months</>
                     <ArrowRight className="ml-2 h-6 w-6" />
@@ -680,7 +686,7 @@ function App() {
 
 
       {/* Features Section */}
-      <section id="features" className="py-20">
+      <section id="features" className="py-20 section-mint" style={{ backgroundColor: 'var(--color-background-primary)' }}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -699,16 +705,23 @@ function App() {
                   <button
                     key={index}
                     onClick={() => setActiveFeature(index)}
-                    className={`w-full text-left p-4 rounded-lg transition-all ${
+                    className={`w-full text-left p-4 rounded-lg transition-all card-hover ${
                       activeFeature === index 
-                        ? 'bg-indigo-100 border-2 border-indigo-600' 
-                        : 'bg-white border-2 border-gray-200 hover:border-indigo-300'
+                        ? 'border-2' 
+                        : 'border-2 hover:scale-105'
                     }`}
+                    style={{
+                      backgroundColor: activeFeature === index ? 'var(--color-selected-bg)' : 'var(--color-surface)',
+                      borderColor: activeFeature === index ? 'var(--color-primary)' : 'var(--color-border-light)'
+                    }}
                   >
                     <div className="flex items-center space-x-3">
                       <div className={`p-2 rounded-lg ${
-                        activeFeature === index ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-600'
-                      }`}>
+                        activeFeature === index ? 'text-white' : 'text-gray-600'
+                      }`}
+                      style={{
+                        backgroundColor: activeFeature === index ? 'var(--color-primary)' : 'var(--color-hover-overlay)'
+                      }}>
                         {feature.icon}
                       </div>
                       <div>
@@ -730,7 +743,7 @@ function App() {
           </div>
 
           {/* Feature Details */}
-          <div className="bg-white p-8 rounded-2xl shadow-lg">
+          <div className="bg-white p-8 rounded-2xl shadow-lg card-hover">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               {features[activeFeature].title}
             </h3>
@@ -750,28 +763,28 @@ function App() {
       </section>
 
       {/* Why HEYA Section */}
-      <section className="py-16 bg-indigo-50">
+      <section className="py-16 section-mint" style={{ backgroundColor: 'var(--color-background-primary)' }}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Why HEYA?</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="text-center">
-              <div className="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 float-animation" style={{ background: 'var(--color-primary)' }}>
                 <MapPin className="h-8 w-8 text-white" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Australian startup</h3>
               <p className="text-gray-600">We answer when you call</p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 float-animation" style={{ background: 'var(--color-primary)', animationDelay: '0.5s' }}>
                 <Users className="h-8 w-8 text-white" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Built for salons</h3>
               <p className="text-gray-600">We get your business</p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 float-animation" style={{ background: 'var(--color-primary)', animationDelay: '1s' }}>
                 <Star className="h-8 w-8 text-white" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Growing with you</h3>
@@ -782,7 +795,7 @@ function App() {
       </section>
 
       {/* Switching from Timely Section */}
-      <section className="py-12 bg-gradient-to-r from-indigo-50 to-indigo-100 border-l-4 border-indigo-500">
+      <section className="py-12 section-gradient border-l-4" style={{ background: 'linear-gradient(90deg, rgba(167, 243, 208, 0.2) 0%, rgba(230, 255, 250, 0.3) 100%)', borderColor: 'var(--color-primary)' }}>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -791,7 +804,7 @@ function App() {
             <p className="text-lg text-gray-700 mb-6">
               We will transition you for <strong>FREE</strong> and provide <strong>100% on-call support</strong>
             </p>
-            <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5" asChild>
+            <Button size="lg" className="btn-primary bounce-hover text-lg px-8 py-3" style={{ backgroundColor: 'var(--color-primary)', color: 'var(--color-text-on-dark)' }} asChild>
               <a href="#get-started">
                 Get Free Migration
               </a>
@@ -802,7 +815,7 @@ function App() {
 
       {/* Testimonials Section */}
       {!isTimelyMigration && (
-        <section id="testimonials" className="py-20">
+        <section id="testimonials" className="py-20 section-teal" style={{ backgroundColor: 'var(--color-background-secondary)' }}>
           <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -814,7 +827,7 @@ function App() {
           </div>
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="p-6">
+              <Card key={index} className="p-6 card-hover">
                 <CardContent className="p-0">
                   <div className="flex mb-4">
                     {[...Array(testimonial.rating)].map((_, i) => (
@@ -838,7 +851,7 @@ function App() {
 
       {/* Timely Migration Testimonials - Only shows for Timely users */}
       {isTimelyMigration && (
-        <section className="py-20 bg-indigo-50">
+        <section className="py-20 section-mint" style={{ backgroundColor: 'var(--color-background-primary)' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -849,7 +862,7 @@ function App() {
               </p>
             </div>
             <div className="max-w-4xl mx-auto space-y-8">
-              <Card className="p-8 border-2 border-indigo-200">
+              <Card className="p-8 border-2 card-hover" style={{ borderColor: 'var(--color-border)' }}>
                 <CardContent className="p-0">
                   <div className="flex mb-4">
                     {[...Array(5)].map((_, i) => (
@@ -862,12 +875,12 @@ function App() {
                   <div>
                     <div className="font-bold text-gray-900 text-lg">Jessica Thompson</div>
                     <div className="text-gray-600">Luxe Beauty Studio, Sydney</div>
-                    <Badge className="mt-2 bg-indigo-100 text-indigo-700">Former Timely User (4 years)</Badge>
+                    <Badge className="mt-2 bg-teal-100 text-teal-700">Former Timely User (4 years)</Badge>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="p-8 border-2 border-indigo-200">
+              <Card className="p-8 border-2 card-hover" style={{ borderColor: 'var(--color-border)' }}>
                 <CardContent className="p-0">
                   <div className="flex mb-4">
                     {[...Array(5)].map((_, i) => (
@@ -880,12 +893,12 @@ function App() {
                   <div>
                     <div className="font-bold text-gray-900 text-lg">Michael Chen</div>
                     <div className="text-gray-600">Urban Cuts Barbershop, Melbourne</div>
-                    <Badge className="mt-2 bg-indigo-100 text-indigo-700">Switched from Timely 8 months ago</Badge>
+                    <Badge className="mt-2 bg-teal-100 text-teal-700">Switched from Timely 8 months ago</Badge>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="p-8 border-2 border-indigo-200">
+              <Card className="p-8 border-2 card-hover" style={{ borderColor: 'var(--color-border)' }}>
                 <CardContent className="p-0">
                   <div className="flex mb-4">
                     {[...Array(5)].map((_, i) => (
@@ -898,13 +911,13 @@ function App() {
                   <div>
                     <div className="font-bold text-gray-900 text-lg">Rachel Martinez</div>
                     <div className="text-gray-600">Serenity Spa & Wellness, Brisbane</div>
-                    <Badge className="mt-2 bg-indigo-100 text-indigo-700">Ex-Timely User (2 years)</Badge>
+                    <Badge className="mt-2 bg-teal-100 text-teal-700">Ex-Timely User (2 years)</Badge>
                   </div>
                 </CardContent>
               </Card>
 
               <div className="text-center mt-12">
-                <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-lg px-8 py-3" asChild>
+                <Button size="lg" className="btn-primary bounce-hover text-lg px-8 py-3" style={{ backgroundColor: 'var(--color-primary)', color: 'var(--color-text-on-dark)' }} asChild>
                   <a href="#get-started">
                     Join 200+ Former Timely Users
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -918,7 +931,7 @@ function App() {
 
       {/* Timely-specific FAQ Section - Only shows for Timely users */}
       {isTimelyMigration && (
-        <section className="py-16 bg-white">
+        <section className="py-16 section-white" style={{ backgroundColor: 'var(--color-surface)' }}>
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
@@ -931,7 +944,7 @@ function App() {
               </div>
               
               <div className="space-y-6">
-                <Card className="p-6">
+                <Card className="p-6 card-hover">
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
                     "Will I lose my booking history from Timely?"
                   </h3>
@@ -940,7 +953,7 @@ function App() {
                   </p>
                 </Card>
                 
-                <Card className="p-6">
+                <Card className="p-6 card-hover">
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
                     "What about my Tyro EFTPOS terminal?"
                   </h3>
@@ -949,7 +962,7 @@ function App() {
                   </p>
                 </Card>
                 
-                <Card className="p-6">
+                <Card className="p-6 card-hover">
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
                     "How long does migration really take?"
                   </h3>
@@ -958,7 +971,7 @@ function App() {
                   </p>
                 </Card>
                 
-                <Card className="p-6">
+                <Card className="p-6 card-hover">
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
                     "What if I'm locked into a Timely contract?"
                   </h3>
@@ -967,7 +980,7 @@ function App() {
                   </p>
                 </Card>
                 
-                <Card className="p-6">
+                <Card className="p-6 card-hover">
                   <h3 className="text-xl font-bold text-gray-900 mb-3">
                     "Is the 6 months free offer real?"
                   </h3>
@@ -978,7 +991,7 @@ function App() {
               </div>
               
               <div className="mt-12 text-center">
-                <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-lg px-8 py-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5" asChild>
+                <Button size="lg" className="btn-primary bounce-hover pulse-animation text-lg px-8 py-3" style={{ backgroundColor: 'var(--color-primary)', color: 'var(--color-text-on-dark)' }} asChild>
                   <a href="#get-started">
                     Get All Your Questions Answered
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -992,7 +1005,7 @@ function App() {
 
       {/* HEYA Product Showcase Section - Only shows for Timely users */}
       {isTimelyMigration && (
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 section-teal" style={{ backgroundColor: 'var(--color-background-secondary)' }}>
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
@@ -1018,7 +1031,7 @@ function App() {
                     <p className="text-gray-700 mb-3">
                       Drag-and-drop scheduling that actually works
                     </p>
-                    <div className="text-sm text-indigo-600 font-semibold">
+                    <div className="text-sm text-teal-600 font-semibold">
                       ✓ Real-time updates, no refresh needed
                     </div>
                   </div>
@@ -1037,7 +1050,7 @@ function App() {
                     <p className="text-gray-700 mb-3">
                       Checkout in under 30 seconds
                     </p>
-                    <div className="text-sm text-indigo-600 font-semibold">
+                    <div className="text-sm text-teal-600 font-semibold">
                       ✓ Works with your existing Tyro
                     </div>
                   </div>
@@ -1056,7 +1069,7 @@ function App() {
                     <p className="text-gray-700 mb-3">
                       Know your business at a glance
                     </p>
-                    <div className="text-sm text-indigo-600 font-semibold">
+                    <div className="text-sm text-teal-600 font-semibold">
                       ✓ Track no-shows, revenue, busy times
                     </div>
                   </div>
@@ -1064,7 +1077,7 @@ function App() {
               </div>
               
               <div className="mt-12 text-center">
-                <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-lg px-8 py-3" asChild>
+                <Button size="lg" className="btn-primary bounce-hover text-lg px-8 py-3" style={{ backgroundColor: 'var(--color-primary)', color: 'var(--color-text-on-dark)' }} asChild>
                   <a href="#get-started">
                     See Live Demo
                     <Play className="ml-2 h-5 w-5" />
@@ -1077,7 +1090,7 @@ function App() {
       )}
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-20 bg-gray-50">
+      <section id="pricing" className="py-20 section-teal" style={{ backgroundColor: 'var(--color-background-secondary)' }}>
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -1089,9 +1102,9 @@ function App() {
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {pricingPlans.map((plan, index) => (
-              <Card key={index} className={`relative ${plan.popular ? 'border-indigo-600 border-2' : ''}`}>
+              <Card key={index} className={`relative card-hover ${plan.popular ? 'border-2' : ''}`} style={{ borderColor: plan.popular ? 'var(--color-primary)' : 'var(--color-border-light)' }}>
                 {plan.popular && (
-                  <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-indigo-600">
+                  <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2" style={{ backgroundColor: 'var(--color-primary)', color: 'var(--color-text-on-dark)' }}>
                     Most Popular
                   </Badge>
                 )}
@@ -1115,8 +1128,8 @@ function App() {
                   <Button 
                     className={`w-full ${
                       plan.popular 
-                        ? 'bg-indigo-600 hover:bg-indigo-700' 
-                        : 'bg-gray-900 hover:bg-gray-800'
+                        ? 'btn-primary bounce-hover' 
+                        : 'bg-gray-900 hover:bg-gray-800 bounce-hover'
                     }`}
                     asChild
                   >
@@ -1132,14 +1145,14 @@ function App() {
       </section>
 
       {/* CTA Section with Form */}
-      <section id="get-started" className="py-20 bg-indigo-600">
+      <section id="get-started" className="py-20" style={{ background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%)' }}>
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-white mb-4">
                 Ready to transform your beauty business?
               </h2>
-              <p className="text-xl text-indigo-100 max-w-2xl mx-auto">
+              <p className="text-xl text-teal-100 max-w-2xl mx-auto">
                 Join hundreds of Australian salons and spas already saving time and growing their revenue with Heya POS.
               </p>
             </div>
@@ -1150,25 +1163,25 @@ function App() {
                 <h3 className="text-2xl font-semibold mb-4">Start your free 30-day trial today</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start space-x-3">
-                    <CheckCircle className="h-6 w-6 text-indigo-200 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-6 w-6 text-teal-200 flex-shrink-0 mt-0.5" />
                     <span>No credit card required to get started</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <CheckCircle className="h-6 w-6 text-indigo-200 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-6 w-6 text-teal-200 flex-shrink-0 mt-0.5" />
                     <span>Full setup and onboarding in under 24 hours</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <CheckCircle className="h-6 w-6 text-indigo-200 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-6 w-6 text-teal-200 flex-shrink-0 mt-0.5" />
                     <span>Free data migration from your current system</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <CheckCircle className="h-6 w-6 text-indigo-200 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-6 w-6 text-teal-200 flex-shrink-0 mt-0.5" />
                     <span>Australian-based support team available 7 days</span>
                   </li>
                 </ul>
                 <div className="pt-4">
-                  <p className="text-indigo-200 mb-2">Prefer to talk to someone?</p>
-                  <Button variant="outline" className="border-white bg-transparent text-white hover:bg-white hover:text-indigo-600" asChild>
+                  <p className="text-teal-200 mb-2">Prefer to talk to someone?</p>
+                  <Button variant="outline" className="border-white bg-transparent text-white bounce-hover" style={{ borderColor: 'white' }} asChild>
                     <a href="tel:0432648531">
                       <Phone className="mr-2 h-4 w-4" />
                       Call Nick: 0432 648 531
@@ -1241,7 +1254,8 @@ function App() {
                   <Button 
                     type="submit" 
                     size="lg" 
-                    className="w-full bg-indigo-600 hover:bg-indigo-700 text-lg py-3"
+                    className="w-full btn-primary bounce-hover text-lg py-3"
+                    style={{ backgroundColor: 'var(--color-primary)', color: 'var(--color-text-on-dark)' }}
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? 'Submitting...' : (isTimelyMigration ? 'Start Your Timely Migration' : 'Get Started Free')}
@@ -1260,7 +1274,7 @@ function App() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-br from-teal-600 to-teal-700 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">H</span>
                 </div>
                 <span className="text-xl font-bold">Heya POS</span>
