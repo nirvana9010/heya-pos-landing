@@ -106,6 +106,16 @@
   --color-text-on-dark: #FFFFFF;            /* White - text on dark backgrounds */
   --color-text-mint: #0F766E;               /* Teal - links and accents */
   
+  /* Background-specific text colors for proper contrast */
+  --color-text-on-mint-light: #0F172A;      /* Dark text on light mint */
+  --color-text-on-mint-dark: #FFFFFF;       /* White text on dark mint/teal */
+  --color-text-on-primary: #FFFFFF;         /* White text on primary teal */
+  --color-text-on-accent: #0F172A;          /* Dark text on accent colors */
+  --color-text-on-coral: #FFFFFF;           /* White text on coral */
+  --color-text-on-peach: #0F172A;           /* Dark text on peach */
+  --color-text-on-lavender: #FFFFFF;        /* White text on lavender */
+  --color-text-on-yellow: #0F172A;          /* Dark text on yellow */
+  
   /* =================================
      PLAYFUL ACCENT COLORS
      ================================= */
@@ -447,4 +457,132 @@
   font-family: var(--font-display);
   font-weight: var(--font-weight-bold);
   font-variant-numeric: tabular-nums;
+}
+
+/* =================================
+   CONTRAST UTILITY CLASSES
+   ================================= */
+/* Light backgrounds - use dark text */
+.bg-light,
+.bg-mint-soft,
+.bg-white,
+.bg-surface {
+  color: var(--color-text-primary);
+}
+
+.bg-light h1, .bg-light h2, .bg-light h3, .bg-light h4, .bg-light h5, .bg-light h6,
+.bg-mint-soft h1, .bg-mint-soft h2, .bg-mint-soft h3, .bg-mint-soft h4, .bg-mint-soft h5, .bg-mint-soft h6,
+.bg-white h1, .bg-white h2, .bg-white h3, .bg-white h4, .bg-white h5, .bg-white h6,
+.bg-surface h1, .bg-surface h2, .bg-surface h3, .bg-surface h4, .bg-surface h5, .bg-surface h6 {
+  color: var(--color-text-primary);
+}
+
+/* Dark backgrounds - use white text */
+.bg-dark,
+.bg-primary,
+.bg-primary-dark,
+.bg-teal-dark,
+.section-dark {
+  color: var(--color-text-on-dark);
+}
+
+.bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark h4, .bg-dark h5, .bg-dark h6,
+.bg-primary h1, .bg-primary h2, .bg-primary h3, .bg-primary h4, .bg-primary h5, .bg-primary h6,
+.bg-primary-dark h1, .bg-primary-dark h2, .bg-primary-dark h3, .bg-primary-dark h4, .bg-primary-dark h5, .bg-primary-dark h6,
+.bg-teal-dark h1, .bg-teal-dark h2, .bg-teal-dark h3, .bg-teal-dark h4, .bg-teal-dark h5, .bg-teal-dark h6,
+.section-dark h1, .section-dark h2, .section-dark h3, .section-dark h4, .section-dark h5, .section-dark h6 {
+  color: var(--color-text-on-dark);
+}
+
+/* Specific background colors */
+.bg-coral { color: var(--color-text-on-coral); }
+.bg-peach { color: var(--color-text-on-peach); }
+.bg-lavender { color: var(--color-text-on-lavender); }
+.bg-yellow { color: var(--color-text-on-yellow); }
+
+/* Gradient backgrounds - ensure proper text contrast */
+.bg-gradient-hero,
+.bg-gradient-primary {
+  color: var(--color-text-primary);
+}
+
+.bg-gradient-hero h1,
+.bg-gradient-hero h2,
+.bg-gradient-hero p,
+.bg-gradient-primary h1,
+.bg-gradient-primary h2,
+.bg-gradient-primary p {
+  color: var(--color-text-primary);
+}
+
+/* Section-specific contrast fixes */
+.hero-dark,
+.cta-section-dark,
+.special-offer-section {
+  background: var(--color-primary-dark);
+  color: var(--color-text-on-dark);
+}
+
+.hero-dark *,
+.cta-section-dark *,
+.special-offer-section * {
+  color: inherit;
+}
+
+/* Fix the Timely Refugee Special section specifically */
+.timely-special-offer {
+  background: var(--color-primary-dark);
+  color: var(--color-text-on-dark) !important;
+}
+
+.timely-special-offer h2,
+.timely-special-offer h3,
+.timely-special-offer p,
+.timely-special-offer li,
+.timely-special-offer span {
+  color: var(--color-text-on-dark) !important;
+}
+
+/* Cards on colored backgrounds */
+.card-on-mint {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+}
+
+/* Global rules to prevent contrast issues */
+[class*="bg-primary"] *:not(.text-dark):not(input):not(button),
+[class*="bg-dark"] *:not(.text-dark):not(input):not(button),
+[class*="bg-teal"] *:not(.text-dark):not(input):not(button) {
+  color: var(--color-text-on-dark);
+}
+
+/* Ensure form inputs maintain readability on dark backgrounds */
+.bg-dark input,
+.bg-dark textarea,
+.bg-dark select,
+.bg-primary input,
+.bg-primary textarea,
+.bg-primary select {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-on-dark);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.bg-dark input::placeholder,
+.bg-dark textarea::placeholder,
+.bg-primary input::placeholder,
+.bg-primary textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Focus states with sufficient contrast */
+.bg-dark input:focus,
+.bg-dark textarea:focus,
+.bg-dark select:focus,
+.bg-primary input:focus,
+.bg-primary textarea:focus,
+.bg-primary select:focus {
+  border-color: rgba(255, 255, 255, 0.6);
+  outline: 2px solid rgba(255, 255, 255, 0.3);
+  outline-offset: 2px;
 }

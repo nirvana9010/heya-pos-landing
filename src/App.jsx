@@ -10,7 +10,9 @@ import './App.css'
 
 // Import screenshots
 import dashboardOverview from './assets/dashboard-overview.webp'
+import merchantDashboard from './assets/merchant-dashboard-2.png'
 import calendarWithBookings from './assets/calendar-with-bookings.webp'
+import newCalendarDaily from './assets/new-heya-calendar-daily.png'
 import bookingsManagement from './assets/bookings-management.webp'
 import loyaltyProgram from './assets/loyalty-program.webp'
 import customerBookingInterface from './assets/customer-booking-interface.webp'
@@ -121,7 +123,7 @@ function App() {
         "Drag-and-drop bookings",
         "Instant synchronization between staff"
       ],
-      image: calendarWithBookings,
+      image: newCalendarDaily,
       details: "Your calendar updates every 10 seconds across all devices. Whether bookings come through your website, phone calls, or walk-ins, everyone sees the changes instantly. Drag and drop appointments to reschedule with zero conflicts."
     },
     {
@@ -261,7 +263,7 @@ function App() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 gradient-animated section-gradient relative overflow-hidden" style={{ background: 'var(--gradient-hero)', backgroundSize: '200% 200%' }}>
+      <section className="py-20 gradient-animated section-gradient relative overflow-hidden bg-gradient-hero" style={{ background: 'var(--gradient-hero)', backgroundSize: '200% 200%' }}>
         {/* Floating decorative elements */}
         <div className="absolute top-10 left-10 w-20 h-20 rounded-full opacity-20 float-animation" style={{ background: 'var(--color-accent-mint-bright)' }}></div>
         <div className="absolute top-32 right-20 w-16 h-16 rounded-full opacity-20 float-animation" style={{ background: 'var(--color-accent-coral)', animationDelay: '1s' }}></div>
@@ -271,13 +273,13 @@ function App() {
             <div>
               {isTimelyMigration ? (
                 <>
-                  <h1 className="hero-heading text-gray-900 mb-4">
+                  <h1 className="hero-heading mb-4" style={{ color: 'var(--color-text-primary)' }}>
                     Leaving Timely? We'll Pay for Your Move.
                   </h1>
-                  <p className="lead-text text-gray-700 mb-6" style={{ fontWeight: 'var(--font-weight-medium)' }}>
+                  <p className="lead-text mb-6" style={{ fontWeight: 'var(--font-weight-medium)', color: 'var(--color-text-primary)' }}>
                     Keep your Tyro. Migrate your data. Get 6 months <span className="free-badge">FREE</span> when you switch.
                   </p>
-                  <p className="text-lg text-gray-600 mb-8">
+                  <p className="text-lg mb-8" style={{ color: 'var(--color-text-secondary)' }}>
                     Join 47 Australian salons who switched from Timely this month
                   </p>
                 </>
@@ -286,12 +288,12 @@ function App() {
                   <Badge className="mb-4 bounce-hover" style={{ background: 'rgba(94, 234, 212, 0.2)', color: 'var(--color-primary)' }}>
                     Proudly Australian-owned and operated
                   </Badge>
-                  <h1 className="hero-heading text-gray-900 mb-6">
+                  <h1 className="hero-heading mb-6" style={{ color: 'var(--color-text-primary)' }}>
                     The All-in-One Platform{' '}
-                    <span className="text-teal-600">Australian Beauty Businesses</span>{' '}
+                    <span style={{ color: 'var(--color-primary)' }}>Australian Beauty Businesses</span>{' '}
                     Trust
                   </h1>
-                  <p className="lead-text text-gray-600 mb-8">
+                  <p className="lead-text mb-8" style={{ color: 'var(--color-text-secondary)' }}>
                     Join 500+ salons and spas using Heya POS to save 10 hours per week, eliminate double bookings, 
                     and increase customer retention by 25%. No app downloads required.
                   </p>
@@ -324,11 +326,11 @@ function App() {
                           />
                         </div>
                         <CheckCircle className="h-8 w-8" style={{ color: 'var(--color-accent-mint-bright)' }} />
-                        <span className="lead-text text-gray-800" style={{ fontWeight: 'var(--font-weight-semibold)' }}>Your Tyro Terminal Just Works With HEYA</span>
+                        <span className="lead-text" style={{ fontWeight: 'var(--font-weight-semibold)', color: 'var(--color-text-primary)' }}>Your Tyro Terminal Just Works With HEYA</span>
                       </div>
                     </div>
                   </div>
-                  <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+                  <div className="flex flex-wrap gap-4 text-sm" style={{ color: 'var(--color-text-secondary)' }}>
                     <div className="flex items-center space-x-2">
                       <CheckCircle className="h-5 w-5" style={{ color: 'var(--color-accent-mint-bright)' }} />
                       <span>Keep Your Tyro Terminal</span>
@@ -351,8 +353,8 @@ function App() {
             </div>
             <div className="relative">
               <img 
-                src={dashboardOverview} 
-                alt="Heya POS Dashboard Overview" 
+                src={merchantDashboard} 
+                alt="Heya POS Merchant Dashboard" 
                 className="rounded-lg shadow-2xl border card-hover"
               />
               <div className="absolute -bottom-4 -left-4 bg-white p-4 rounded-lg shadow-lg border card-hover">
@@ -629,45 +631,48 @@ function App() {
 
       {/* Special Offer Section - Only shows for Timely users */}
       {isTimelyMigration && (
-        <section className="py-16 text-white relative overflow-hidden" style={{ background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%)' }}>
+        <section className="py-20 relative overflow-hidden timely-special-offer flex items-center min-h-[600px]" style={{ background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%)', color: 'var(--color-text-on-dark)' }}>
           <div className="absolute top-0 right-0 w-64 h-64 rounded-full opacity-10 float-animation" style={{ background: 'var(--color-accent-yellow)' }}></div>
           <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full opacity-10 float-animation" style={{ background: 'var(--color-accent-mint-bright)', animationDelay: '2s' }}></div>
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
+          <div className="container mx-auto px-4 relative z-10 w-full">
+            <div className="max-w-3xl mx-auto text-center">
               <div className="bg-white/10 backdrop-blur border-2 border-white/20 rounded-2xl p-8 md:p-12 card-hover">
-                <h2 className="display-heading mb-6 flex items-center justify-center" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
-                  🎉 Limited Time: Timely Refugee Special
+                <div className="text-center mb-2">
+                  <span className="text-5xl">🎉</span>
+                </div>
+                <h2 className="display-heading mb-6 text-center" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-text-on-dark)' }}>
+                  Limited Time: Timely Refugee Special
                 </h2>
                 
-                <div className="space-y-6 mb-8">
-                  <div className="text-2xl font-semibold">
+                <div className="mb-8">
+                  <div className="text-2xl font-semibold mb-6" style={{ color: 'var(--color-text-on-dark)' }}>
                     The Deal:
                   </div>
-                  <ul className="space-y-3 text-lg max-w-2xl mx-auto text-left">
+                  <ul className="space-y-4 text-lg max-w-xl mx-auto text-left">
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="h-6 w-6 text-teal-200 flex-shrink-0 mt-0.5" />
-                      <span>30-day free trial (no card required)</span>
+                      <span style={{ color: 'var(--color-text-on-dark)' }}>30-day free trial (no card required)</span>
                     </li>
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="h-6 w-6 text-teal-200 flex-shrink-0 mt-0.5" />
-                      <span>Then just $49/month (normally $99)</span>
+                      <span style={{ color: 'var(--color-text-on-dark)' }}>Then just $49/month (normally $99)</span>
                     </li>
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="h-6 w-6 text-teal-200 flex-shrink-0 mt-0.5" />
-                      <span className="font-bold">Sign for 12 months → Get 6 MONTHS <span className="free-badge">FREE</span></span>
+                      <span className="font-bold" style={{ color: 'var(--color-text-on-dark)' }}>Sign for 12 months → Get 6 MONTHS <span className="free-badge">FREE</span></span>
                     </li>
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="h-6 w-6 text-teal-200 flex-shrink-0 mt-0.5" />
-                      <span>That's $294 back in your pocket</span>
+                      <span style={{ color: 'var(--color-text-on-dark)' }}>That's $294 back in your pocket</span>
                     </li>
                   </ul>
                 </div>
                 
                 <div className="space-y-4 mb-8">
-                  <p className="text-xl font-bold text-yellow-300">
+                  <p className="text-xl font-bold" style={{ color: 'var(--color-accent-yellow)' }}>
                     Only 11 spots remaining at this price
                   </p>
-                  <p className="text-lg">
+                  <p className="text-lg" style={{ color: 'var(--color-text-on-dark)' }}>
                     Offer expires Friday - Timely won't get better, we will
                   </p>
                 </div>
@@ -1145,43 +1150,43 @@ function App() {
       </section>
 
       {/* CTA Section with Form */}
-      <section id="get-started" className="py-20" style={{ background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%)' }}>
+      <section id="get-started" className="py-20" style={{ background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%)', color: 'var(--color-text-on-dark)' }}>
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="display-heading text-white mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
+              <h2 className="display-heading mb-4" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', color: 'var(--color-text-on-dark)' }}>
                 Ready to transform your beauty business?
               </h2>
-              <p className="text-xl text-teal-100 max-w-2xl mx-auto">
+              <p className="text-xl max-w-2xl mx-auto" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
                 Join hundreds of Australian salons and spas already saving time and growing their revenue with Heya POS.
               </p>
             </div>
             
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               {/* Left side - Benefits */}
-              <div className="text-white space-y-6">
-                <h3 className="text-2xl font-semibold mb-4">Start your free 30-day trial today</h3>
+              <div className="space-y-6">
+                <h3 className="text-2xl font-semibold mb-4" style={{ color: 'var(--color-text-on-dark)' }}>Start your free 30-day trial today</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start space-x-3">
                     <CheckCircle className="h-6 w-6 text-teal-200 flex-shrink-0 mt-0.5" />
-                    <span>No credit card required to get started</span>
+                    <span style={{ color: 'var(--color-text-on-dark)' }}>No credit card required to get started</span>
                   </li>
                   <li className="flex items-start space-x-3">
                     <CheckCircle className="h-6 w-6 text-teal-200 flex-shrink-0 mt-0.5" />
-                    <span>Full setup and onboarding in under 24 hours</span>
+                    <span style={{ color: 'var(--color-text-on-dark)' }}>Full setup and onboarding in under 24 hours</span>
                   </li>
                   <li className="flex items-start space-x-3">
                     <CheckCircle className="h-6 w-6 text-teal-200 flex-shrink-0 mt-0.5" />
-                    <span>Free data migration from your current system</span>
+                    <span style={{ color: 'var(--color-text-on-dark)' }}>Free data migration from your current system</span>
                   </li>
                   <li className="flex items-start space-x-3">
                     <CheckCircle className="h-6 w-6 text-teal-200 flex-shrink-0 mt-0.5" />
-                    <span>Australian-based support team available 7 days</span>
+                    <span style={{ color: 'var(--color-text-on-dark)' }}>Australian-based support team available 7 days</span>
                   </li>
                 </ul>
                 <div className="pt-4">
-                  <p className="text-teal-200 mb-2">Prefer to talk to someone?</p>
-                  <Button variant="outline" className="border-white bg-transparent text-white bounce-hover" style={{ borderColor: 'white' }} asChild>
+                  <p className="mb-2" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Prefer to talk to someone?</p>
+                  <Button variant="outline" className="border-white bg-transparent bounce-hover" style={{ borderColor: 'white', color: 'var(--color-text-on-dark)' }} asChild>
                     <a href="tel:0432648531">
                       <Phone className="mr-2 h-4 w-4" />
                       Call Nick: 0432 648 531
@@ -1269,23 +1274,23 @@ function App() {
 
 
       {/* Footer */}
-      <footer className="py-12 bg-gray-900 text-white">
+      <footer className="py-12 bg-gray-900" style={{ backgroundColor: '#0F172A', color: 'var(--color-text-on-dark)' }}>
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <div className="w-8 h-8 bg-gradient-to-br from-teal-600 to-teal-700 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">H</span>
+                  <span className="font-bold text-sm" style={{ color: 'var(--color-text-on-dark)' }}>H</span>
                 </div>
-                <span className="text-xl font-bold">Heya POS</span>
+                <span className="text-xl font-bold" style={{ color: 'var(--color-text-on-dark)' }}>Heya POS</span>
               </div>
-              <p className="text-gray-400">
+              <p style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
                 The all-in-one platform for Australian beauty businesses.
               </p>
             </div>
             <div>
-              <h3 className="font-semibold mb-4">Product</h3>
-              <ul className="space-y-2 text-gray-400">
+              <h3 className="font-semibold mb-4" style={{ color: 'var(--color-text-on-dark)' }}>Product</h3>
+              <ul className="space-y-2" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
                 <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Integrations</a></li>
@@ -1293,8 +1298,8 @@ function App() {
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold mb-4">Support</h3>
-              <ul className="space-y-2 text-gray-400">
+              <h3 className="font-semibold mb-4" style={{ color: 'var(--color-text-on-dark)' }}>Support</h3>
+              <ul className="space-y-2" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
                 <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
                 <li><a href="tel:0432648531" className="hover:text-white transition-colors">Contact Us</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Training</a></li>
@@ -1302,8 +1307,8 @@ function App() {
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold mb-4">Company</h3>
-              <ul className="space-y-2 text-gray-400">
+              <h3 className="font-semibold mb-4" style={{ color: 'var(--color-text-on-dark)' }}>Company</h3>
+              <ul className="space-y-2" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
                 <li><a href="#" className="hover:text-white transition-colors">About</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
@@ -1311,7 +1316,7 @@ function App() {
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
             <p>&copy; 2025 Heya POS. All rights reserved. Proudly Australian-owned and operated.</p>
           </div>
         </div>
