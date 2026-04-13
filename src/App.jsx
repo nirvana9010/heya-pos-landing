@@ -307,9 +307,9 @@ function App() {
                   </a>
                 </Button>
                 <Button size="lg" variant="outline" className={isTimelyMigration ? "border-2 text-lg px-8 py-3 bounce-hover" : "border-2 text-lg px-8 py-3 bounce-hover"} style={{ borderColor: 'var(--color-primary)', color: 'var(--color-primary)' }} asChild>
-                  <a href="tel:0432648531">
+                  <a href="tel:0423291930">
                     <Phone className="mr-2 h-5 w-5" />
-                    {isTimelyMigration ? 'Book 10-Min Demo' : 'Call Nick: 0432 648 531'}
+                    {isTimelyMigration ? 'Book 10-Min Demo' : 'Call Nick: 0423 291 930'}
                   </a>
                 </Button>
               </div>
@@ -1187,9 +1187,9 @@ function App() {
                 <div className="pt-4">
                   <p className="mb-2" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>Prefer to talk to someone?</p>
                   <Button variant="outline" className="border-white bg-transparent bounce-hover" style={{ borderColor: 'white', color: 'var(--color-text-on-dark)' }} asChild>
-                    <a href="tel:0432648531">
+                    <a href="tel:0423291930">
                       <Phone className="mr-2 h-4 w-4" />
-                      Call Nick: 0432 648 531
+                      Call Nick: 0423 291 930
                     </a>
                   </Button>
                 </div>
@@ -1301,7 +1301,7 @@ function App() {
               <h3 className="font-semibold mb-4" style={{ color: 'var(--color-text-on-dark)' }}>Support</h3>
               <ul className="space-y-2" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
                 <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
-                <li><a href="tel:0432648531" className="hover:text-white transition-colors">Contact Us</a></li>
+                <li><a href="tel:0423291930" className="hover:text-white transition-colors">Contact Us</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Training</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Status</a></li>
               </ul>
