@@ -302,7 +302,7 @@ function App() {
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Button size="lg" className={isTimelyMigration ? "btn-primary bounce-hover text-lg px-8 py-3" : "btn-primary bounce-hover text-lg px-8 py-3"} style={{ backgroundColor: 'var(--color-primary)', color: 'var(--color-text-on-dark)' }} asChild>
                   <a href="#get-started">
-                    {isTimelyMigration ? <>Claim 6 Months <span className="free-badge">FREE</span></> : 'Start Your Free 30-Day Trial'}
+                    {isTimelyMigration ? <>Claim 6 Months <span className="free-badge">FREE</span></> : 'Start Your Free 14-Day Trial'}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
@@ -494,7 +494,7 @@ function App() {
                     <tr>
                       <td className="px-6 py-4" style={{ fontWeight: 'var(--font-weight-medium)' }}>Free Trial</td>
                       <td className="px-6 py-4 text-center text-gray-600">14 days</td>
-                      <td className="px-6 py-4 text-center text-teal-600 font-bold">30 days</td>
+                      <td className="px-6 py-4 text-center text-teal-600 font-bold">14 days</td>
                     </tr>
                     <tr style={{ backgroundColor: 'var(--color-background-soft)' }}>
                       <td className="px-6 py-4" style={{ fontWeight: 'var(--font-weight-medium)' }}>Contract Lock-in</td>
@@ -651,7 +651,7 @@ function App() {
                   <ul className="space-y-4 text-lg max-w-xl mx-auto text-left">
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="h-6 w-6 text-teal-200 flex-shrink-0 mt-0.5" />
-                      <span style={{ color: 'var(--color-text-on-dark)' }}>30-day free trial (no card required)</span>
+                      <span style={{ color: 'var(--color-text-on-dark)' }}>14-day free trial (no card required)</span>
                     </li>
                     <li className="flex items-start space-x-3">
                       <CheckCircle className="h-6 w-6 text-teal-200 flex-shrink-0 mt-0.5" />
@@ -1102,7 +1102,7 @@ function App() {
               Simple, transparent pricing
             </h2>
             <p className="text-xl text-gray-600">
-              Choose the plan that fits your business size. All plans include a 30-day free trial.
+              Choose the plan that fits your business size. All plans include a 14-day free trial.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -1165,7 +1165,7 @@ function App() {
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               {/* Left side - Benefits */}
               <div className="space-y-6">
-                <h3 className="text-2xl font-semibold mb-4" style={{ color: 'var(--color-text-on-dark)' }}>Start your free 30-day trial today</h3>
+                <h3 className="text-2xl font-semibold mb-4" style={{ color: 'var(--color-text-on-dark)' }}>Start your free 14-day trial today</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start space-x-3">
                     <CheckCircle className="h-6 w-6 text-teal-200 flex-shrink-0 mt-0.5" />
