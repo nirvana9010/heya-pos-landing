@@ -2,7 +2,7 @@
   "redirects": [
     {
       "source": "/apk",
-      "destination": "https://heya-merchant-staging.vercel.app/downloads/pos-app.apk",
+      "destination": "https://github.com/Heyapos/pos-app-releases/releases/latest/download/pos-app.apk",
       "permanent": false
     }
   ]
