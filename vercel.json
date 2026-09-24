@@ -4,6 +4,11 @@
       "source": "/apk",
       "destination": "https://github.com/Heyapos/pos-app-releases/releases/latest/download/pos-app.apk",
       "permanent": false
+    },
+    {
+      "source": "/staging-apk",
+      "destination": "https://heya-merchant-staging.vercel.app/downloads/pos-app-staging.apk",
+      "permanent": false
     }
   ]
 }
