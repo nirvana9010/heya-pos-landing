@@ -178,51 +178,59 @@ function useReveal() {
 }
 
 /**
- * A short looping product clip from the Heya demo salon. Plays only while on
- * screen; with reduced motion it shows the last frame and a play control.
+ * A short looping product clip from the Heya demo salon. The video exists
+ * only while the clip is near the screen (a browser decodes only a few
+ * videos at once); otherwise its last frame shows as a picture. With reduced
+ * motion it never plays by itself and offers a play control instead.
  */
-function Clip({ name, label, className = "" }) {
-  const video = useRef(null);
+function Clip({ name, label, phone = false }) {
+  const box = useRef(null);
+  const [near, setNear] = useState(false);
   const [still, setStill] = useState(false);
 
   useEffect(() => {
-    const el = video.current;
-    if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setStill(true);
       return;
     }
     if (!("IntersectionObserver" in window)) {
-      el.play().catch(() => {});
+      setNear(true);
       return;
     }
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) el.play().catch(() => {});
-        else el.pause();
-      },
-      { threshold: 0.35 },
+      ([entry]) => setNear(entry.isIntersecting),
+      { rootMargin: "120px 0px" },
     );
-    observer.observe(el);
+    observer.observe(box.current);
     return () => observer.disconnect();
   }, []);
 
+  const size = { width: phone ? 780 : 1280, height: phone ? 1560 : 800 };
+  const poster = `/clips/${name}-poster.jpg`;
+
   return (
-    <video
-      ref={video}
-      className={`clip ${className}`}
-      muted
-      loop
-      playsInline
-      preload="none"
-      controls={still}
-      poster={`/clips/${name}-poster.jpg`}
-      aria-label={label}
-    >
-      <source src={`/clips/${name}.webm`} type="video/webm" />
-      <source src={`/clips/${name}.mp4`} type="video/mp4" />
-      <img src={`/clips/${name}.gif`} alt={label} />
-    </video>
+    <div ref={box} className="clip-box">
+      {near || still ? (
+        <video
+          className="clip"
+          {...size}
+          muted
+          loop
+          playsInline
+          autoPlay={!still}
+          controls={still}
+          preload={still ? "none" : "auto"}
+          poster={poster}
+          aria-label={label}
+        >
+          <source src={`/clips/${name}.mp4`} type="video/mp4" />
+          <source src={`/clips/${name}.webm`} type="video/webm" />
+          <img src={`/clips/${name}.gif`} alt={label} />
+        </video>
+      ) : (
+        <img className="clip" {...size} src={poster} alt={label} />
+      )}
+    </div>
   );
 }
 
@@ -308,7 +316,7 @@ function Showcase({ id, eyebrow, title, text, clip, phone, flip, children }) {
     >
       <figure className={phone ? "showcase-media is-phone" : "showcase-media"}>
         <div className={phone ? "device phone-device" : "device"}>
-          <Clip name={clip.name} label={clip.label} />
+          <Clip name={clip.name} label={clip.label} phone={phone} />
         </div>
         <figcaption>{clip.caption}</figcaption>
       </figure>
@@ -458,7 +466,7 @@ function App() {
               clip={{
                 name: "booking",
                 label:
-                  "A client books online: picks a service and a time, then pays a deposit.",
+                  "A client books online: picks a service, a stylist and a time, and the booking is confirmed.",
                 caption: "Booking online at our demo salon.",
               }}
             />

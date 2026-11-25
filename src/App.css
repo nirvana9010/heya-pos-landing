@@ -893,6 +893,9 @@ figcaption {
 .showcase.is-flipped .showcase-media {
   order: 2;
 }
+.showcase.is-flipped {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+}
 .showcase-media {
   display: flex;
   flex-direction: column;
@@ -1045,6 +1048,9 @@ figcaption {
   }
   .showcase.is-flipped .showcase-media {
     order: 0;
+  }
+  .showcase.is-flipped {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 @media (max-width: 640px) {
