@@ -9,6 +9,11 @@
       "source": "/staging-apk",
       "destination": "https://heya-merchant-staging.vercel.app/downloads/pos-app-staging.apk",
       "permanent": false
+    },
+    {
+      "source": "/start",
+      "destination": "https://hub.heyapos.com/start",
+      "permanent": false
     }
   ]
 }
