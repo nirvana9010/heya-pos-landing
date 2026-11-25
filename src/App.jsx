@@ -1,18 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import { createElement, useEffect, useRef, useState } from "react";
 import {
   Check,
-  ChartColumn,
   CircleDollarSign,
   Clock,
   Gift,
   Heart,
+  KeyRound,
   MessageCircle,
   Menu,
   Phone,
-  QrCode,
   ShoppingBag,
   Star,
   Tag,
+  UserRound,
   X,
 } from "lucide-react";
 import wordmark from "./assets/heya-wordmark.svg";
@@ -32,8 +32,18 @@ const BASE_PRICE = 69;
 const INCLUDED_STAFF = 4;
 const EXTRA_STAFF_PRICE = 10;
 
-// Each claim here was checked against what every salon has today (25 Nov
-// 2026). Check again before adding to it.
+// Claims on this page were checked against what every salon has today, or
+// approved by the owner (25-26 Nov 2026: setup in 24 hours, checkout in
+// 30 seconds, zero double bookings, staff trained in 30 minutes, no credit
+// card for the trial). Never name the card payment provider.
+const TRUST = [
+  "Australian-owned",
+  "No setup fees",
+  "Free data migration",
+  "Set up in 24 hours",
+  "Support in Tiếng Việt",
+];
+
 const REASONS = [
   {
     title: "Help when you need it.",
@@ -44,72 +54,92 @@ const REASONS = [
     text: "Booking confirmations, 24-hour reminders and changes go out by text at no extra cost. No per-text charges.",
   },
   {
-    title: "No commission. Ever.",
+    title: "No commission. No setup fees.",
     text: "One monthly price. We never take a cut of your bookings, your new clients or your takings.",
   },
   {
-    title: "We move you over.",
-    text: "Coming from Fresha? We bring your clients, bookings and gift cards across for you.",
+    title: "Free data migration.",
+    text: "We move your clients, bookings and gift cards across for you. Most salons are set up in under 24 hours.",
+  },
+  {
+    title: "Easy to learn.",
+    text: "Staff learn Heya in under 30 minutes. It runs in your browser and on the salon tablet, with no app downloads.",
+  },
+  {
+    title: "Australian-owned. Shaped by you.",
+    text: "We’re an Australian team building Heya for salons. Your feedback shapes what we build next.",
   },
 ];
 
+const icon = (component) =>
+  createElement(component, { "aria-hidden": "true", size: 20 });
+
 const FEATURES = [
   {
-    icon: <CircleDollarSign aria-hidden="true" size={20} />,
+    icon: icon(CircleDollarSign),
     title: "Online deposits",
     text: "Take a deposit when clients book, so a no-show doesn’t cost you the slot.",
   },
   {
-    icon: <Heart aria-hidden="true" size={20} />,
+    icon: icon(Heart),
     title: "Loyalty rewards",
     text: "Run a punch card or points. Clients see their rewards when they book online.",
   },
   {
-    icon: <Star aria-hidden="true" size={20} />,
+    icon: icon(Star),
     title: "Google reviews",
     addOn: true,
     text: "After a visit, Heya texts your client a link to review you on Google.",
   },
   {
-    icon: <QrCode aria-hidden="true" size={20} />,
-    title: "Easy check-in",
-    text: "Clients scan your QR code when they arrive and appear on your calendar straight away.",
-  },
-  {
-    icon: <Gift aria-hidden="true" size={20} />,
+    icon: icon(Gift),
     title: "Gift cards",
     text: "Sell gift cards at the counter or on your booking site. The balance shows at checkout.",
   },
   {
-    icon: <Tag aria-hidden="true" size={20} />,
+    icon: icon(Tag),
     title: "Promotions",
     text: "Set up happy hours, time-limited discounts and offers for chosen clients.",
   },
   {
-    icon: <Clock aria-hidden="true" size={20} />,
+    icon: icon(UserRound),
+    title: "Client history",
+    text: "Every visit, note and reward in one place, so you remember the details.",
+  },
+  {
+    icon: icon(Clock),
     title: "Roster and timesheets",
     text: "Plan the week’s roster, and staff clock in and out on the salon tablet.",
   },
   {
-    icon: <ShoppingBag aria-hidden="true" size={20} />,
-    title: "Product sales",
-    text: "Sell retail products at checkout and see what sold, with cost and margin.",
+    icon: icon(KeyRound),
+    title: "Staff PINs",
+    text: "Every staff member has their own PIN. See who did what, and protect refunds and discounts.",
   },
   {
-    icon: <ChartColumn aria-hidden="true" size={20} />,
-    title: "Your day in numbers",
-    text: "See takings, top services and how each team member is doing. Download it as a spreadsheet.",
+    icon: icon(ShoppingBag),
+    title: "Product sales",
+    text: "Sell retail products at checkout and see what sold, with cost and margin.",
   },
 ];
 
 const INCLUDED = [
   "Your own booking site with your logo",
   "Unlimited booking texts: confirmations, 24-hour reminders and changes",
+  "Calendar and checkout, with card payments built in",
   "Online deposits",
   "Loyalty, gift cards and promotions",
-  "Check-in, roster and timesheets",
+  "Check-in, roster, timesheets and staff PINs",
   "Reports",
+  "Free data migration and setup",
   "Support in English and Vietnamese, Mon–Fri 9am–5pm",
+];
+
+const START_POINTS = [
+  "No credit card required",
+  "Set up in under 24 hours",
+  "Free data migration",
+  "No setup fees",
 ];
 
 function Wordmark() {
@@ -121,6 +151,78 @@ function Wordmark() {
       width="147"
       height="70"
     />
+  );
+}
+
+/** Fades sections in as they scroll into view (none with reduced motion). */
+function useReveal() {
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!("IntersectionObserver" in window)) return;
+    document.documentElement.classList.add("can-reveal");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      },
+      { rootMargin: "0px 0px -10% 0px" },
+    );
+    document
+      .querySelectorAll("[data-reveal]")
+      .forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+}
+
+/**
+ * A short looping product clip from the Heya demo salon. Plays only while on
+ * screen; with reduced motion it shows the last frame and a play control.
+ */
+function Clip({ name, label, className = "" }) {
+  const video = useRef(null);
+  const [still, setStill] = useState(false);
+
+  useEffect(() => {
+    const el = video.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setStill(true);
+      return;
+    }
+    if (!("IntersectionObserver" in window)) {
+      el.play().catch(() => {});
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) el.play().catch(() => {});
+        else el.pause();
+      },
+      { threshold: 0.35 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={video}
+      className={`clip ${className}`}
+      muted
+      loop
+      playsInline
+      preload="none"
+      controls={still}
+      poster={`/clips/${name}-poster.jpg`}
+      aria-label={label}
+    >
+      <source src={`/clips/${name}.webm`} type="video/webm" />
+      <source src={`/clips/${name}.mp4`} type="video/mp4" />
+      <img src={`/clips/${name}.gif`} alt={label} />
+    </video>
   );
 }
 
@@ -197,48 +299,26 @@ function Header({ onDemo }) {
   );
 }
 
-function BookingPreview() {
+function Showcase({ id, eyebrow, title, text, clip, phone, flip, children }) {
   return (
-    <figure className="booking-visual">
-      <div
-        className="phone"
-        role="img"
-        aria-label="Example booking site for The Heya Studio, showing manicure and pedicure services, appointment times and a deposit."
-      >
-        <div className="phone-camera" />
-        <div className="phone-brand">
-          <Wordmark />
-          <span>The Heya Studio</span>
+    <div
+      className={flip ? "showcase is-flipped" : "showcase"}
+      id={id}
+      data-reveal
+    >
+      <figure className={phone ? "showcase-media is-phone" : "showcase-media"}>
+        <div className={phone ? "device phone-device" : "device"}>
+          <Clip name={clip.name} label={clip.label} />
         </div>
-        <h3>
-          A little time
-          <br />
-          for yourself.
-        </h3>
-        <p>Choose your next appointment.</p>
-        <div className="service-row">
-          <span>
-            Gel manicure<small>45 minutes</small>
-          </span>
-          <strong>$55</strong>
-        </div>
-        <div className="service-row">
-          <span>
-            Spa pedicure<small>60 minutes</small>
-          </span>
-          <strong>$65</strong>
-        </div>
-        <div className="phone-date">Saturday, 12 September</div>
-        <div className="time-options">
-          <span>10:00 am</span>
-          <span>11:30 am</span>
-          <span>1:00 pm</span>
-          <span>2:15 pm</span>
-        </div>
-        <div className="phone-action">Pay $20 deposit and book</div>
+        <figcaption>{clip.caption}</figcaption>
+      </figure>
+      <div className="feature-copy">
+        <p className="eyebrow">{eyebrow}</p>
+        <h2 className="section-heading">{title}</h2>
+        <p className="section-copy">{text}</p>
+        {children}
       </div>
-      <figcaption>An example of a salon’s booking site.</figcaption>
-    </figure>
+    </div>
   );
 }
 
@@ -254,16 +334,16 @@ function SupportChat() {
           <MessageCircle size={14} aria-hidden="true" />
           WhatsApp · Heya support
         </span>
-        <div className="chat-bubble salon">
+        <div className="chat-bubble salon" data-reveal>
           Hi Heya, how do I add a new staff member?
           <small>10:02 am</small>
         </div>
-        <div className="chat-bubble heya">
+        <div className="chat-bubble heya" data-reveal>
           Hi! Open the Staff page, add them there and choose their services.
           Want me to walk you through it on a call?
           <small>10:03 am</small>
         </div>
-        <div className="chat-bubble salon">
+        <div className="chat-bubble salon" data-reveal>
           Cảm ơn nhiều!
           <small>10:04 am</small>
         </div>
@@ -286,6 +366,7 @@ function PriceExample() {
 function App() {
   const demoDialog = useRef(null);
   const openDemo = () => demoDialog.current?.showModal();
+  useReveal();
 
   return (
     <>
@@ -310,9 +391,7 @@ function App() {
                   Book a demo
                 </button>
               </div>
-              <p className="trial-note">
-                14 days free. Help in English and Vietnamese.
-              </p>
+              <p className="trial-note">14 days free. No credit card needed.</p>
             </div>
             <div className="hero-photo">
               <img
@@ -334,27 +413,13 @@ function App() {
             </div>
           </section>
 
-          <ul className="benefit-strip" aria-label="Highlights">
-            <li>
-              <Check aria-hidden="true" size={17} />
-              Online booking
-            </li>
-            <li>
-              <Check aria-hidden="true" size={17} />
-              Online deposits
-            </li>
-            <li>
-              <Check aria-hidden="true" size={17} />
-              Loyalty rewards
-            </li>
-            <li>
-              <Check aria-hidden="true" size={17} />
-              Check-in &amp; reports
-            </li>
-            <li>
-              <Check aria-hidden="true" size={17} />
-              Support in Tiếng Việt
-            </li>
+          <ul className="benefit-strip" aria-label="Why salons trust Heya">
+            {TRUST.map((item) => (
+              <li key={item}>
+                <Check aria-hidden="true" size={17} />
+                {item}
+              </li>
+            ))}
           </ul>
 
           <section
@@ -367,8 +432,12 @@ function App() {
               Good software. People behind it.
             </h2>
             <ul className="reasons">
-              {REASONS.map((reason) => (
-                <li key={reason.title}>
+              {REASONS.map((reason, index) => (
+                <li
+                  key={reason.title}
+                  data-reveal
+                  style={{ "--delay": `${(index % 3) * 90}ms` }}
+                >
                   <h3>{reason.title}</h3>
                   <p>{reason.text}</p>
                 </li>
@@ -379,35 +448,86 @@ function App() {
           <section
             className="features-section wrap"
             id="features"
-            aria-labelledby="features-title"
+            aria-label="Features"
           >
-            <div className="booking-feature">
-              <BookingPreview />
-              <div className="feature-copy">
-                <p className="eyebrow">Your own booking site</p>
-                <h2 className="section-heading" id="features-title">
-                  They find a time.
-                  <br />
-                  You find your flow.
-                </h2>
-                <p className="section-copy">
-                  Every salon gets its own booking site with its logo, name and
-                  opening hours. Clients book any time, and Heya texts and
-                  emails to confirm and remind them.
+            <Showcase
+              eyebrow="Your own booking site"
+              title="They find a time. You find your flow."
+              text="Every salon gets its own booking site with its logo, name and opening hours. Clients book any time on their phone, with no app to download, and Heya texts and emails to confirm and remind them."
+              phone
+              clip={{
+                name: "booking",
+                label:
+                  "A client books online: picks a service and a time, then pays a deposit.",
+                caption: "Booking online at our demo salon.",
+              }}
+            />
+            <Showcase
+              id="calendar"
+              eyebrow="Calendar"
+              title="A calendar that keeps up."
+              text="Bookings update live on every screen in the salon, with no refresh needed. Drag and drop to move them. Zero double bookings."
+              flip
+              clip={{
+                name: "calendar",
+                label: "Moving a booking to a new time on the Heya calendar.",
+                caption: "Moving a booking in our demo salon.",
+              }}
+            />
+            <Showcase
+              id="checkout"
+              eyebrow="Checkout"
+              title="Checkout in under 30 seconds."
+              text="Cash, card or split the bill. Card terminal payments are built in. Already have a terminal? Ask us if you can keep it. Your takings add up by themselves at the end of the day."
+              clip={{
+                name: "checkout",
+                label:
+                  "Taking payment for a visit, split between cash and card.",
+                caption: "Checkout in our demo salon.",
+              }}
+            />
+
+            <div className="clip-pair">
+              <article data-reveal>
+                <div className="device">
+                  <Clip
+                    name="checkin"
+                    label="A client checks in by QR code and appears on the salon's screen."
+                  />
+                </div>
+                <h3>An easy check-in.</h3>
+                <p>
+                  Clients scan your QR code when they arrive and appear on your
+                  calendar straight away.
                 </p>
-                <a className="text-link" href="#everyday">
-                  See everything Heya does
-                </a>
-              </div>
+              </article>
+              <article data-reveal style={{ "--delay": "90ms" }}>
+                <div className="device">
+                  <Clip
+                    name="reports"
+                    label="The Reports page: today's takings and the staff leaderboard."
+                  />
+                </div>
+                <h3>Your day in numbers.</h3>
+                <p>
+                  See takings, top services and how each team member is doing.
+                  Download it as a spreadsheet.
+                </p>
+              </article>
             </div>
+
             <div className="feature-grid-intro" id="everyday">
               <h2 className="section-heading">
                 Everything a busy salon needs.
               </h2>
             </div>
             <ul className="feature-grid">
-              {FEATURES.map(({ icon, title, text, addOn }) => (
-                <li key={title}>
+              {FEATURES.map(({ icon, title, text, addOn }, index) => (
+                <li
+                  key={title}
+                  data-reveal
+                  style={{ "--delay": `${(index % 3) * 90}ms` }}
+                >
                   <span className="feature-icon">{icon}</span>
                   <h3>
                     {title}
@@ -429,9 +549,10 @@ function App() {
               One simple price.
             </h2>
             <p className="section-copy">
-              Pay for the staff you have. No commission, no quote needed.
+              Pay for the staff you have. No commission, no setup fees, no quote
+              needed.
             </p>
-            <div className="plan is-popular">
+            <div className="plan" data-reveal>
               <div className="plan-head">
                 <h3>Heya</h3>
                 <p className="plan-price">
@@ -446,6 +567,7 @@ function App() {
                 <a className="button" href={START_URL}>
                   Start 14-day free trial
                 </a>
+                <p className="price-example">No credit card needed.</p>
               </div>
               <div className="plan-body">
                 <p className="plan-list-title">Everything included:</p>
@@ -496,11 +618,20 @@ function App() {
             className="demo-section wrap"
             id="demo"
             aria-labelledby="demo-title"
+            data-reveal
           >
             <h2 id="demo-title">Make a little more room for what you love.</h2>
             <p>
               Try Heya free for 14 days, or talk it through with our team first.
             </p>
+            <ul className="start-points">
+              {START_POINTS.map((point) => (
+                <li key={point}>
+                  <Check aria-hidden="true" size={16} />
+                  {point}
+                </li>
+              ))}
+            </ul>
             <div className="actions centred">
               <a className="button" href={START_URL}>
                 Start free trial
@@ -516,9 +647,13 @@ function App() {
             <Wordmark />
           </a>
           <div className="footer-links">
-            <span>Heya POS © {new Date().getFullYear()}</span>
+            <span>
+              Heya POS © {new Date().getFullYear()}. Proudly Australian-owned
+              and operated.
+            </span>
             <a href="#features">Features</a>
             <a href="#pricing">Pricing</a>
+            <a href="/privacy">Privacy</a>
             <a href={PHONE_LINK}>Call {PHONE_LABEL}</a>
           </div>
         </footer>
