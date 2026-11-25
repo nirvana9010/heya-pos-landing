@@ -809,15 +809,25 @@ figcaption {
   gap: 10px;
   flex-wrap: wrap;
 }
-.add-on {
-  font-family: Manrope, Arial, sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0;
-  color: var(--teal);
-  border: 1px solid #a6bdb1;
+.add-ons {
+  margin-top: 56px;
+  padding: 36px 36px 40px;
+  border: 1px solid #d7e2dc;
   border-radius: 20px;
-  padding: 3px 9px;
+}
+.add-ons-title {
+  font-family: Fraunces, Georgia, serif;
+  font-weight: 600;
+  font-size: 28px;
+  letter-spacing: -0.4px;
+}
+.add-ons-copy {
+  margin-top: 6px;
+  font-size: 15px;
+  color: var(--muted);
+}
+.add-ons .feature-grid {
+  margin-top: 28px;
 }
 .support-copy .vi {
   font-weight: 700;
@@ -845,10 +855,12 @@ figcaption {
 .chat-bubble.heya {
   background: #f3f5f4;
 }
-@media (max-width: 1000px) {
+@media (max-width: 760px) {
   .reasons {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
   }
+}
+@media (max-width: 1000px) {
   .feature-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -879,6 +891,17 @@ figcaption {
   .feature-grid {
     margin-top: 32px;
     gap: 30px;
+  }
+  .add-ons {
+    margin-top: 40px;
+    padding: 26px 22px 28px;
+  }
+  .reasons li {
+    padding: 22px 20px;
+  }
+  .reasons h3 {
+    font-size: 22px;
+    margin-bottom: 6px;
   }
 }
 .showcase {
@@ -924,6 +947,9 @@ figcaption {
     0 1px 2px #17332f14,
     0 18px 40px -18px #17332f40;
   border: 1px solid #17332f1f;
+}
+.device.is-compact {
+  width: min(460px, 100%);
 }
 .phone-device {
   width: min(280px, 100%);

@@ -34,8 +34,10 @@ const EXTRA_STAFF_PRICE = 10;
 
 // Claims on this page were checked against what every salon has today, or
 // approved by the owner (25-26 Nov 2026: setup in 24 hours, checkout in
-// 30 seconds, zero double bookings, staff trained in 30 minutes, no credit
-// card for the trial). Never name the card payment provider.
+// 30 seconds, staff trained in 30 minutes, no credit card for the trial).
+// "Zero double bookings" was dropped on 26 Nov: staff can drop a booking onto
+// a busy stylist, and the calendar marks it "Check". Never name the card
+// payment provider.
 const TRUST = [
   "Australian-owned",
   "No setup fees",
@@ -46,28 +48,16 @@ const TRUST = [
 
 const REASONS = [
   {
-    title: "Help when you need it.",
-    text: "Message the Heya team on WhatsApp and get help straight away, Monday to Friday, 9am to 5pm. In English or Vietnamese.",
+    title: "Help in your language.",
+    text: "Message us on WhatsApp, Mon–Fri 9am–5pm, in English or Vietnamese.",
   },
   {
-    title: "Booking texts included.",
-    text: "Booking confirmations, 24-hour reminders and changes go out by text at no extra cost. No per-text charges.",
+    title: "One price, no surprises.",
+    text: "Booking texts included. No commission, no setup fees.",
   },
   {
-    title: "No commission. No setup fees.",
-    text: "One monthly price. We never take a cut of your bookings, your new clients or your takings.",
-  },
-  {
-    title: "Free data migration.",
-    text: "We move your clients, bookings and gift cards across for you. Most salons are set up in under 24 hours.",
-  },
-  {
-    title: "Easy to learn.",
-    text: "Staff learn Heya in under 30 minutes. It runs in your browser and on the salon tablet, with no app downloads.",
-  },
-  {
-    title: "Australian-owned. Shaped by you.",
-    text: "We’re an Australian team building Heya for salons. Your feedback shapes what we build next.",
+    title: "Running in a day.",
+    text: "We move your data for free. Staff learn Heya in 30 minutes.",
   },
 ];
 
@@ -86,20 +76,9 @@ const FEATURES = [
     text: "Run a punch card or points. Clients see their rewards when they book online.",
   },
   {
-    icon: icon(Star),
-    title: "Google reviews",
-    addOn: true,
-    text: "After a visit, Heya texts your client a link to review you on Google.",
-  },
-  {
     icon: icon(Gift),
     title: "Gift cards",
     text: "Sell gift cards at the counter or on your booking site. The balance shows at checkout.",
-  },
-  {
-    icon: icon(Tag),
-    title: "Promotions",
-    text: "Set up happy hours, time-limited discounts and offers for chosen clients.",
   },
   {
     icon: icon(UserRound),
@@ -116,6 +95,19 @@ const FEATURES = [
     title: "Staff PINs",
     text: "Every staff member has their own PIN. See who did what, and protect refunds and discounts.",
   },
+];
+
+const ADD_ONS = [
+  {
+    icon: icon(Star),
+    title: "Google reviews",
+    text: "After a visit, Heya texts your client a link to review you on Google.",
+  },
+  {
+    icon: icon(Tag),
+    title: "Promotions",
+    text: "Set up happy hours, time-limited discounts and offers for chosen clients.",
+  },
   {
     icon: icon(ShoppingBag),
     title: "Product sales",
@@ -128,7 +120,7 @@ const INCLUDED = [
   "Unlimited booking texts: confirmations, 24-hour reminders and changes",
   "Calendar and checkout, with card payments built in",
   "Online deposits",
-  "Loyalty, gift cards and promotions",
+  "Loyalty and gift cards",
   "Check-in, roster, timesheets and staff PINs",
   "Reports",
   "Free data migration and setup",
@@ -141,6 +133,24 @@ const START_POINTS = [
   "Free data migration",
   "No setup fees",
 ];
+
+function FeatureList({ items }) {
+  return (
+    <ul className="feature-grid">
+      {items.map(({ icon, title, text }, index) => (
+        <li
+          key={title}
+          data-reveal
+          style={{ "--delay": `${(index % 3) * 90}ms` }}
+        >
+          <span className="feature-icon">{icon}</span>
+          <h3>{title}</h3>
+          <p>{text}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 function Wordmark() {
   return (
@@ -183,7 +193,7 @@ function useReveal() {
  * videos at once); otherwise its last frame shows as a picture. With reduced
  * motion it never plays by itself and offers a play control instead.
  */
-function Clip({ name, label, phone = false }) {
+function Clip({ name, label, phone = false, width, height }) {
   const box = useRef(null);
   const [near, setNear] = useState(false);
   const [still, setStill] = useState(false);
@@ -205,7 +215,9 @@ function Clip({ name, label, phone = false }) {
     return () => observer.disconnect();
   }, []);
 
-  const size = { width: phone ? 780 : 1280, height: phone ? 1560 : 800 };
+  const size = width
+    ? { width, height }
+    : { width: phone ? 780 : 1280, height: phone ? 1560 : 800 };
   const poster = `/clips/${name}-poster.jpg`;
 
   return (
@@ -315,8 +327,22 @@ function Showcase({ id, eyebrow, title, text, clip, phone, flip, children }) {
       data-reveal
     >
       <figure className={phone ? "showcase-media is-phone" : "showcase-media"}>
-        <div className={phone ? "device phone-device" : "device"}>
-          <Clip name={clip.name} label={clip.label} phone={phone} />
+        <div
+          className={
+            phone
+              ? "device phone-device"
+              : clip.width
+                ? "device is-compact"
+                : "device"
+          }
+        >
+          <Clip
+            name={clip.name}
+            label={clip.label}
+            phone={phone}
+            width={clip.width}
+            height={clip.height}
+          />
         </div>
         <figcaption>{clip.caption}</figcaption>
       </figure>
@@ -474,12 +500,13 @@ function App() {
               id="calendar"
               eyebrow="Calendar"
               title="A calendar that keeps up."
-              text="Bookings update live on every screen in the salon, with no refresh needed. Drag and drop to move them. Zero double bookings."
+              text="Changes show on every screen in the salon by themselves. Two clients at once? Heya marks the clash, and one drag moves a booking to a free stylist."
               flip
               clip={{
                 name: "calendar",
-                label: "Moving a booking to a new time on the Heya calendar.",
-                caption: "Moving a booking in our demo salon.",
+                label:
+                  "Two bookings clash, and one is dragged to a free stylist.",
+                caption: "Fixing a clash in our demo salon.",
               }}
             />
             <Showcase
@@ -490,7 +517,9 @@ function App() {
               clip={{
                 name: "checkout",
                 label:
-                  "Taking payment for a visit, split between cash and card.",
+                  "A $65 visit paid $20 in cash and $45 by card, then Payment Successful.",
+                width: 960,
+                height: 942,
                 caption: "Checkout in our demo salon.",
               }}
             />
@@ -505,8 +534,8 @@ function App() {
                 </div>
                 <h3>An easy check-in.</h3>
                 <p>
-                  Clients scan your QR code when they arrive and appear on your
-                  calendar straight away.
+                  Clients scan your QR code when they arrive, and you get a
+                  notice straight away.
                 </p>
               </article>
               <article data-reveal style={{ "--delay": "90ms" }}>
@@ -529,22 +558,12 @@ function App() {
                 Everything a busy salon needs.
               </h2>
             </div>
-            <ul className="feature-grid">
-              {FEATURES.map(({ icon, title, text, addOn }, index) => (
-                <li
-                  key={title}
-                  data-reveal
-                  style={{ "--delay": `${(index % 3) * 90}ms` }}
-                >
-                  <span className="feature-icon">{icon}</span>
-                  <h3>
-                    {title}
-                    {addOn && <span className="add-on">Add-on</span>}
-                  </h3>
-                  <p>{text}</p>
-                </li>
-              ))}
-            </ul>
+            <FeatureList items={FEATURES} />
+            <div className="add-ons" data-reveal>
+              <h3 className="add-ons-title">Add-ons</h3>
+              <p className="add-ons-copy">Switch them on when you need them.</p>
+              <FeatureList items={ADD_ONS} />
+            </div>
           </section>
 
           <section
@@ -588,8 +607,8 @@ function App() {
                   ))}
                 </ul>
                 <p className="plan-extras">
-                  Extras: Google review texts, and SMS credits for marketing
-                  texts and extra reminders.
+                  Add-ons: Google reviews, promotions and product sales. SMS
+                  credits for marketing texts and extra reminders.
                 </p>
               </div>
             </div>
