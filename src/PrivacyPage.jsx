@@ -1,12 +1,12 @@
 import wordmark from "./assets/heya-wordmark.svg";
 import "./App.css";
 
-// Placeholders in square brackets must be filled in before this goes live
-// (owner, 26 Nov 2026). Written for the Australian Privacy Principles; have
-// it reviewed before publishing. Never name the card payment provider.
-const COMPANY = "[Company name]";
-const ABN = "[ABN]";
-const EMAIL = "[privacy contact email]";
+// Company details from the owner, 26 Nov 2026. Written for the Australian
+// Privacy Principles; have it reviewed before publishing. Never name the
+// card payment provider.
+const COMPANY = "Hida Pos Pty Ltd";
+const ABN = "72 655 096 585";
+const EMAIL = "admin@heyapos.com";
 const UPDATED = "26 November 2026";
 
 function Privacy() {
@@ -133,15 +133,17 @@ function Privacy() {
         <h2>Seeing and correcting your information</h2>
         <p>
           You can ask to see or correct the personal information we hold about
-          you. Contact us at {EMAIL}. We will reply within 30 days. If we can’t
-          give you access, we will tell you why.
+          you. Contact us at <a href={`mailto:${EMAIL}`}>{EMAIL}</a>. We will
+          reply within 30 days. If we can’t give you access, we will tell you
+          why.
         </p>
 
         <h2>Complaints</h2>
         <p>
-          If you have a concern about your privacy, email {EMAIL} and we will
-          respond within 30 days. If you are not satisfied with our answer, you
-          can contact the Office of the Australian Information Commissioner at{" "}
+          If you have a concern about your privacy, email{" "}
+          <a href={`mailto:${EMAIL}`}>{EMAIL}</a> and we will respond within 30
+          days. If you are not satisfied with our answer, you can contact the
+          Office of the Australian Information Commissioner at{" "}
           <a href="https://www.oaic.gov.au" rel="noopener noreferrer">
             oaic.gov.au
           </a>
@@ -152,7 +154,7 @@ function Privacy() {
         <p>
           {COMPANY}, trading as Heya POS
           <br />
-          Email: {EMAIL}
+          Email: <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
           <br />
           Phone: <a href="tel:+61423291930">0423 291 930</a>
         </p>
