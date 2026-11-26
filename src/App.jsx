@@ -529,13 +529,13 @@ function App() {
                 <div className="device">
                   <Clip
                     name="checkin"
-                    label="A client checks in by QR code and appears on the salon's screen."
+                    label="A client checks in by QR code on their phone, and their card appears in a stylist's column on the salon calendar."
                   />
                 </div>
                 <h3>An easy check-in.</h3>
                 <p>
-                  Clients scan your QR code when they arrive, and you get a
-                  notice straight away.
+                  Clients scan your QR code when they arrive, and their card
+                  appears on your calendar straight away.
                 </p>
               </article>
               <article data-reveal style={{ "--delay": "90ms" }}>
